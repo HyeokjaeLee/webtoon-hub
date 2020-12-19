@@ -36,3 +36,135 @@
     transform: rotate(360deg);
   }
 }
+
+a:link {
+  text-decoration: none;
+  color: #999696; /*기존 색상코드 #999696; > 블랙으로 수정*/
+}
+a:visited {
+  text-decoration: none;
+  color: #999696;
+}
+a:active {
+  text-decoration: none;
+  color: #999696;
+}
+a:hover {
+  color: #bfbcbc;
+}
+
+@font-face {
+  font-family: "title_font";
+  src: url(./fonts/Title.ttf) format("truetype");
+}
+@font-face {
+  font-family: "main_font";
+  src: url(./fonts/GmarketSansTTFLight.ttf) format("truetype");
+}
+
+input:focus {
+  outline: none;
+}
+
+.body {
+  font-family: "main_font";
+  background-color: #141414;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  font-size: calc(10px + 2vmin);
+  width: 100%;
+  overflow: hidden;
+}
+
+.top_bar {
+  width: 100%;
+  display: flex;
+  background-color: #3a3a3a;
+}
+
+.top_bar_search_box {
+  font-family: "main_font";
+  background-color: #3a3a3a;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  width: 70%;
+  height: 30px;
+  border: none;
+  color: white;
+  font-size: 25px;
+}
+
+.top_bar_item {
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  color: white;
+  font-size: 20px;
+}
+
+.content_area {
+  -webkit-padding-start: 0px;
+  width: 100%;
+  padding: 1% 1%;
+}
+.webtoon_container {
+  width: 33%;
+  float: left;
+  list-style: none;
+}
+.thumnail {
+  position: relative;
+  width: 100%;
+}
+
+.thumnail:after {
+  content: "";
+  display: block;
+  padding-bottom: 100%;
+}
+
+.thumnail_img {
+  position: absolute;
+  width: 96%;
+  height: 96%;
+  overflow: hidden;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.webtoon_info {
+  height: 55px;
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  padding: 5% 5%;
+  width: 86%;
+  background-color: #3a3a3a;
+  word-break: keep-all;
+  line-height: 60%;
+  margin-top: 10px;
+  text-align: left;
+}
+.filter_container {
+  margin-top: 5%;
+  text-align: center;
+  width: 100%;
+  padding: 1% 1%;
+  -webkit-padding-start: 0px;
+}
+
+.filter_option {
+  text-align: center;
+  width: 12.5%;
+  list-style: none;
+  float: left;
+}
+
+.webtoon_info_container {
+  -webkit-padding-start: 0px;
+  width: 100%;
+  float: left;
+}
