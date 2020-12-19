@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 const webtoon_api_url = "https://toy-projects-api.herokuapp.com/webtoon/all";
 var webtoon_data:any;
@@ -88,13 +87,13 @@ return (
       <span className="top_bar_item">/ SEARCH</span>
     </div>
     <ul className="filter_container">
-      <Filter_option filter_num="0" weekday="월" />
-      <Filter_option filter_num="1" weekday="화" />
-      <Filter_option filter_num="2" weekday="수" />
-      <Filter_option filter_num="3" weekday="목" />
-      <Filter_option filter_num="4" weekday="금" />
-      <Filter_option filter_num="5" weekday="토" />
-      <Filter_option filter_num="6" weekday="일" />
+      <Filter_option filter_num="1" weekday="월" />
+      <Filter_option filter_num="2" weekday="화" />
+      <Filter_option filter_num="3" weekday="수" />
+      <Filter_option filter_num="4" weekday="목" />
+      <Filter_option filter_num="5" weekday="금" />
+      <Filter_option filter_num="6" weekday="토" />
+      <Filter_option filter_num="0" weekday="일" />
       <Filter_option filter_num="7" weekday="완결" />
     </ul>
     <Webtoon_area />
@@ -137,22 +136,7 @@ function ajax_get(url:string, callback:any) {
 ajax_get(webtoon_api_url, function (data:any) {
   webtoon_data = data;
   filtering_data = webtoon_data.filter(function (element:A_webtoon_info) {
-    switch (today_weeknum) {
-      case 0:
-        return element.weekday == 6;
-      case 1:
-        return element.weekday == 0;
-      case 2:
-        return element.weekday == 1;
-      case 3:
-        return element.weekday == 2;
-      case 4:
-        return element.weekday == 3;
-      case 5:
-        return element.weekday == 4;
-      case 6:
-        return element.weekday == 5;
-    }
+        return element.weekday == today_weeknum;
   });
 });
 export default App;
