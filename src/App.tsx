@@ -85,7 +85,7 @@ function App() {
         }}
         className="filter_option"
       >
-        <a href="#">{props.weekday}</a>
+        <a>{props.weekday}</a>
       </li>
     );
   }
