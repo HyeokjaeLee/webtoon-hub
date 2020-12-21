@@ -10,7 +10,10 @@ Code for creating api : [link](https://github.com/HyeokjaeLee/Toy-projects-API)
 
 ## to-do
 
--[x] create project with typescript (ver 0.1.0)<br> -[x] move from javascript to typescript(ver 0.2.0)<br> -[x] clear up the typescript code
-(ver 0.3.0)<br> -[x] add fade-in animation
-(ver 0.3.0)<br>
--[] clear up fade-in animation<br>
+- [x] create project with typescript (ver 0.1.0)<br>
+- [x] move from javascript to typescript(ver 0.2.0)<br>
+- [x] clear up the typescript code
+      (ver 0.3.0)<br>
+- [x] add fade-in animation
+      (ver 0.3.0)<br>
+- [ ] clear up fade-in animation<br>
