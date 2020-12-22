@@ -18,3 +18,5 @@ Code for creating api : [link](https://github.com/HyeokjaeLee/Toy-projects-API)
       (ver 0.3.0)<br>
 - [ ] clear up fade-in animation<br>
 - [ ] Improved rendering methods<br>
+- [ ] Create pc version web<br>
+- [ ] Ai Webtoon Recommendation<br>
