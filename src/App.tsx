@@ -1,11 +1,12 @@
+import View_a_webtoon from "./components/webtoon_container";
 import { render } from "@testing-library/react";
 import React, { useState, useEffect } from "react";
 import type { A_webtoon_info } from "./modules/base_modules";
 import { get_json_data } from "./modules/base_modules";
 import "./App.css";
-import Rotate from "./components/animation";
 const webtoon_api_url = "https://toy-projects-api.herokuapp.com/webtoon/all";
 var today_weeknum = new Date().getDay();
+let view_count = 9;
 
 /*const useTitle = (initialTitle: any) => {
   const [title, setTitle] = useState(initialTitle);
@@ -27,37 +28,19 @@ let filtering_data: A_webtoon_info[] = webtoon_data.filter(function (element: A_
 function App() {
   const htmlTitle: any = document.querySelector("title");
   htmlTitle.innerText = "WEBTOON HUB";
-  let [target_data, change_target_data] = useState(filtering_data);
+  const [target_data, change_target_data] = useState(filtering_data);
   const webtoon_view_rendering = () => {};
   const a_webtoon: JSX.Element[] = target_data.map((target_data, index: number) => (
-    <div key={index}>
-      <Rotate right>
-        <a href={target_data.url}>
-          <li className="webtoon_container">
-            <div className="webtoon_info">
-              <ul className="webtoon_info_container">
-                <li
-                  style={{
-                    fontSize: "10px",
-                    listStyle: "none",
-                    textAlign: "right",
-                    color: "white",
-                  }}
-                >
-                  <span>{target_data.service}</span>
-                  <span style={{ marginLeft: "2px" }}>{target_data.state}</span>
-                </li>
-                <li style={{ fontSize: "10px", listStyle: "none" }}>{target_data.title}</li>
-                <li style={{ fontSize: "8px", listStyle: "none" }}>{target_data.artist}</li>
-              </ul>
-            </div>
-            <div className="thumnail">
-              <img src={target_data.img} className="thumnail_img" />
-            </div>
-          </li>
-        </a>
-      </Rotate>
-    </div>
+    <View_a_webtoon
+      key={index}
+      title={target_data.title}
+      url={target_data.url}
+      img={target_data.img}
+      artist={target_data.artist}
+      service={target_data.service}
+      state={target_data.state}
+      weekday={target_data.weekday}
+    ></View_a_webtoon>
   ));
 
   //검색 기능
@@ -70,17 +53,18 @@ function App() {
       change_target_data(search_data(e.target.value));
     }
   };
-  let [view_webtoon_count, add_view_webtoon_count] = useState(9);
-  let view_test = a_webtoon.splice(0, view_webtoon_count);
+  const [view_webtoon_count, change_view_webtoon_count] = useState(9);
   const Webtoon_area = () => {
-    return <ul className="content_area">{view_test}</ul>;
+    let view_webtoon = a_webtoon.slice(0, view_webtoon_count);
+    return <ul className="content_area">{view_webtoon}</ul>;
   };
 
   const View_more_webtoon = () => {
     return (
       <a
         onClick={() => {
-          add_view_webtoon_count(18);
+          view_count = view_count + 9;
+          change_view_webtoon_count(view_count);
         }}
       >
         more
@@ -91,6 +75,8 @@ function App() {
     return (
       <li
         onClick={() => {
+          view_count = 9;
+          change_view_webtoon_count(view_count);
           change_target_data(filter_data(props.filter_num));
         }}
         className="filter_option"
@@ -101,7 +87,13 @@ function App() {
   }
 
   return (
-    <div className="body">
+    <div
+      className="body"
+      onScroll={() => {
+        view_count = view_count + 9;
+        change_view_webtoon_count(view_count);
+      }}
+    >
       <div className="top_bar">
         <input type={"text"} value={search_txt} className="top_bar_search_box" onChange={set_search_txt} />
         <span className="top_bar_item">/ SEARCH</span>
@@ -117,7 +109,6 @@ function App() {
         <Filter_option filter_num="7" weekday="완결" />
       </ul>
       <Webtoon_area />
-      <div id="test" />
       <View_more_webtoon />
     </div>
   );

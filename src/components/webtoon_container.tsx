@@ -1,7 +1,7 @@
 import React from "react";
 import type { A_webtoon_info } from "../modules/base_modules";
 
-class view_a_webtoon extends React.Component<A_webtoon_info> {
+class View_a_webtoon extends React.Component<A_webtoon_info> {
   render() {
     return (
       <a href={this.props.url}>
@@ -32,4 +32,4 @@ class view_a_webtoon extends React.Component<A_webtoon_info> {
   }
 }
 
-export default view_a_webtoon;
+export default View_a_webtoon;
