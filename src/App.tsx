@@ -1,8 +1,9 @@
 import { render } from "@testing-library/react";
 import React, { useState, useEffect } from "react";
-import ReactDOM from "react-dom";
+import type { A_webtoon_info } from "./modules/base_modules";
+import { get_json_data } from "./modules/base_modules";
 import "./App.css";
-import Fade_bottom from "./components/animation";
+import Rotate from "./components/animation";
 const webtoon_api_url = "https://toy-projects-api.herokuapp.com/webtoon/all";
 var today_weeknum = new Date().getDay();
 
@@ -18,37 +19,11 @@ var today_weeknum = new Date().getDay();
  const titleUpdater = useTitle("Loading...");
 setTimeout(() => titleUpdater("Home"), 1000);*/
 
-const get_json_data = (url: string) => {
-  let xmlhttp = new XMLHttpRequest();
-  let json_data: A_webtoon_info[] = [];
-  xmlhttp.onreadystatechange = () => {
-    if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-      try {
-        json_data = JSON.parse(xmlhttp.responseText);
-      } catch (err) {
-        console.log(err.message + " in " + xmlhttp.responseText);
-        return;
-      }
-    }
-  };
-  xmlhttp.open("GET", url, false); //true는 비동기식, false는 동기식 true로 할시 변수 변경전에 웹페이지가 떠버림
-  xmlhttp.send();
-  return json_data;
-};
 let webtoon_data: A_webtoon_info[] = get_json_data(webtoon_api_url);
 let filtering_data: A_webtoon_info[] = webtoon_data.filter(function (element: A_webtoon_info) {
   return element.weekday == today_weeknum;
 });
 
-interface A_webtoon_info {
-  title: string;
-  artist: string;
-  url: string;
-  img: string;
-  service: string;
-  state: string;
-  weekday: number;
-}
 function App() {
   const htmlTitle: any = document.querySelector("title");
   htmlTitle.innerText = "WEBTOON HUB";
@@ -56,7 +31,7 @@ function App() {
   const webtoon_view_rendering = () => {};
   const a_webtoon: JSX.Element[] = target_data.map((target_data, index: number) => (
     <div key={index}>
-      <Fade_bottom>
+      <Rotate right>
         <a href={target_data.url}>
           <li className="webtoon_container">
             <div className="webtoon_info">
@@ -81,7 +56,7 @@ function App() {
             </div>
           </li>
         </a>
-      </Fade_bottom>
+      </Rotate>
     </div>
   ));
 
