@@ -1,4 +1,6 @@
+import { render } from "@testing-library/react";
 import React, { useState, useEffect } from "react";
+import ReactDOM from "react-dom";
 import "./App.css";
 import Fade_bottom from "./components/animation";
 const webtoon_api_url = "https://toy-projects-api.herokuapp.com/webtoon/all";
@@ -51,33 +53,36 @@ function App() {
   const htmlTitle: any = document.querySelector("title");
   htmlTitle.innerText = "WEBTOON HUB";
   let [target_data, change_target_data] = useState(filtering_data);
-  const a_webtoon: JSX.Element[] = target_data.map((target_data) => (
-    <Fade_bottom key={target_data.title}>
-      <a href={target_data.url}>
-        <li className="webtoon_container">
-          <div className="webtoon_info">
-            <ul className="webtoon_info_container">
-              <li
-                style={{
-                  fontSize: "10px",
-                  listStyle: "none",
-                  textAlign: "right",
-                  color: "white",
-                }}
-              >
-                <span>{target_data.service}</span>
-                <span style={{ marginLeft: "2px" }}>{target_data.state}</span>
-              </li>
-              <li style={{ fontSize: "10px", listStyle: "none" }}>{target_data.title}</li>
-              <li style={{ fontSize: "8px", listStyle: "none" }}>{target_data.artist}</li>
-            </ul>
-          </div>
-          <div className="thumnail">
-            <img src={target_data.img} className="thumnail_img" />
-          </div>
-        </li>
-      </a>
-    </Fade_bottom>
+  const webtoon_view_rendering = () => {};
+  const a_webtoon: JSX.Element[] = target_data.map((target_data, index: number) => (
+    <div key={index}>
+      <Fade_bottom>
+        <a href={target_data.url}>
+          <li className="webtoon_container">
+            <div className="webtoon_info">
+              <ul className="webtoon_info_container">
+                <li
+                  style={{
+                    fontSize: "10px",
+                    listStyle: "none",
+                    textAlign: "right",
+                    color: "white",
+                  }}
+                >
+                  <span>{target_data.service}</span>
+                  <span style={{ marginLeft: "2px" }}>{target_data.state}</span>
+                </li>
+                <li style={{ fontSize: "10px", listStyle: "none" }}>{target_data.title}</li>
+                <li style={{ fontSize: "8px", listStyle: "none" }}>{target_data.artist}</li>
+              </ul>
+            </div>
+            <div className="thumnail">
+              <img src={target_data.img} className="thumnail_img" />
+            </div>
+          </li>
+        </a>
+      </Fade_bottom>
+    </div>
   ));
 
   //검색 기능
@@ -91,8 +96,9 @@ function App() {
     }
   };
   let [view_webtoon_count, add_view_webtoon_count] = useState(9);
+  let view_test = a_webtoon.splice(0, view_webtoon_count);
   const Webtoon_area = () => {
-    return <ul className="content_area">{a_webtoon.splice(0, view_webtoon_count)}</ul>;
+    return <ul className="content_area">{view_test}</ul>;
   };
 
   const View_more_webtoon = () => {
@@ -136,10 +142,12 @@ function App() {
         <Filter_option filter_num="7" weekday="완결" />
       </ul>
       <Webtoon_area />
+      <div id="test" />
       <View_more_webtoon />
     </div>
   );
 }
+
 function filter_data(num: number) {
   var change_target_data = webtoon_data.filter(function (element: A_webtoon_info) {
     return element.weekday == num;
