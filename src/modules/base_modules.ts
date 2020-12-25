@@ -8,6 +8,11 @@ interface A_webtoon_info {
   weekday: number;
 }
 
+interface Page_index {
+  page_item_start_num: number;
+  page_item_end_num: number;
+}
+
 const get_json_data = (url: string) => {
   let xmlhttp = new XMLHttpRequest();
   let json_data: A_webtoon_info[] = [];
@@ -27,4 +32,5 @@ const get_json_data = (url: string) => {
 };
 
 export type { A_webtoon_info };
+export type { Page_index };
 export { get_json_data };

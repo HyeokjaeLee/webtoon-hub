@@ -168,3 +168,8 @@ input:focus {
   width: 100%;
   float: left;
 }
+
+.page_index {
+  list-style: none;
+  float: left;
+}
