@@ -15,7 +15,7 @@ interface Page_index {
 
 const get_json_data = (url: string) => {
   let xmlhttp = new XMLHttpRequest();
-  let json_data: A_webtoon_info[] = [];
+  let json_data: string = "";
   xmlhttp.onreadystatechange = () => {
     if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
       try {
