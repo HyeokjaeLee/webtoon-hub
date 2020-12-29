@@ -65,6 +65,9 @@ function App() {
     }
   }
 
+  const [view_start_num, change_view_start_num] = useState(0);
+  const [view_end_num, change_view_end_num] = useState(9);
+
   //검색 기능
   const [search_txt, change_search_txt] = useState("");
   const [fully_loading, change_fully_loading] = useState(false);
@@ -89,8 +92,7 @@ function App() {
   };
 
   //하단 페이지 : 이동
-  const [view_start_num, change_view_start_num] = useState(0);
-  const [view_end_num, change_view_end_num] = useState(9);
+
   const change_view_index = (num: number): void => {
     change_view_start_num(page_array[num].page_item_start_num);
     change_view_end_num(page_array[num].page_item_end_num);
@@ -136,7 +138,7 @@ function App() {
   };
 
   const Webtoon_area = () => {
-    let viewing_webtoon: JSX.Element[];
+    let viewing_webtoon: JSX.Element[] = a_webtoon.slice(view_start_num, view_end_num);
     if (fully_loading) {
       viewing_webtoon = a_webtoon;
     } else {
@@ -160,9 +162,7 @@ function App() {
         </a>,
       );
     }
-    if (fully_loading) {
-      return <span className="view_select" />;
-    } else {
+    if (fully_loading != true) {
       return (
         <span className="view_select">
           <View_more_webtoon move="<" txt="<" />
@@ -170,6 +170,8 @@ function App() {
           <View_more_webtoon move=">" txt=">" />
         </span>
       );
+    } else {
+      return <span className="view_select" />;
     }
   };
 
@@ -180,10 +182,12 @@ function App() {
       return (
         <li
           onClick={() => {
-            page_array_num = 1;
             change_search_txt("");
-            change_page_index(page_array_num);
+            change_fully_loading(false);
             change_target_data(filter_data(prop.filter_num));
+            page_array_num = 1;
+            change_view_start_num(0);
+            change_view_end_num(9);
             window.scrollTo(0, 0);
           }}
           className="filter_option"
@@ -202,7 +206,7 @@ function App() {
     <div className="body">
       <div className="top_bar">
         <input type={"text"} value={search_txt} className="top_bar_search_box" onChange={set_search_txt} />
-        <span className="top_bar_item">/ SEARCH</span>
+        <span className="top_bar_item">/SEARCH</span>
       </div>
       <Webtoon_filter />
       <Webtoon_area />
