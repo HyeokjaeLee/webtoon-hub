@@ -167,6 +167,8 @@ function App() {
       return (
         <li
           onClick={() => {
+            page_array_num = 1;
+            change_page_index(page_array_num);
             change_target_data(filter_data(prop.filter_num));
           }}
           className="filter_option"
