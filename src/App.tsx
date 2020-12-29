@@ -52,7 +52,7 @@ function App() {
     rest_webtoon_count = total_webtoon_count % 9;
   }
   for (let i: number = 1; i <= total_page_num; i++) {
-    if (i < total_page_num - 1) {
+    if (i < total_page_num) {
       page_array[i] = {
         page_item_start_num: (i - 1) * 9,
         page_item_end_num: (i - 1) * 9 + 9,
