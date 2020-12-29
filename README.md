@@ -16,6 +16,8 @@ Code for creating api : [link](https://github.com/HyeokjaeLee/Toy-projects-API)
       (ver 0.3.0)<br>
 - [x] add fade-in animation
       (ver 0.3.0)<br>
+- [x] add page index<br>
+      (ver 0.4.0)<br>
 - [ ] clear up fade-in animation<br>
 - [ ] Improved rendering methods<br>
 - [ ] Create pc version web<br>

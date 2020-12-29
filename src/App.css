@@ -96,6 +96,20 @@ input:focus {
   font-size: 25px;
 }
 
+.view_select {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  -webkit-display: flex;
+}
+
+.view_select_item {
+  width: 12.5%;
+  list-style: none;
+  float: left;
+  text-align: center;
+}
+
 .top_bar_item {
   justify-content: center;
   align-items: center;
@@ -166,10 +180,5 @@ input:focus {
 .webtoon_info_container {
   -webkit-padding-start: 0px;
   width: 100%;
-  float: left;
-}
-
-.page_index {
-  list-style: none;
   float: left;
 }

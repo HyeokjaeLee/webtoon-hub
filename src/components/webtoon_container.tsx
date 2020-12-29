@@ -3,6 +3,12 @@ import type { A_webtoon_info } from "../modules/base_modules";
 
 class View_a_webtoon extends React.Component<A_webtoon_info> {
   render() {
+    let service_and_state: string;
+    if (this.props.state != "") {
+      service_and_state = this.props.service + " / " + this.props.state;
+    } else {
+      service_and_state = this.props.service;
+    }
     return (
       <a href={this.props.url}>
         <li className="webtoon_container">
@@ -16,8 +22,7 @@ class View_a_webtoon extends React.Component<A_webtoon_info> {
                   color: "white",
                 }}
               >
-                <span>{this.props.service}</span>
-                <span style={{ marginLeft: "2px" }}>{this.props.state}</span>
+                {service_and_state}
               </li>
               <li style={{ fontSize: "10px", listStyle: "none" }}>{this.props.title}</li>
               <li style={{ fontSize: "8px", listStyle: "none" }}>{this.props.artist}</li>

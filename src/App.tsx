@@ -1,12 +1,11 @@
 import View_a_webtoon from "./components/webtoon_container";
-import { render } from "@testing-library/react";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import type { A_webtoon_info, Page_index } from "./modules/base_modules";
 import { get_json_data } from "./modules/base_modules";
 import "./App.css";
 const webtoon_api_url = "https://toy-projects-api.herokuapp.com/webtoon/all";
 var today_weeknum = new Date().getDay();
-let page_array_num: number = 0;
+let page_array_num: number = 1;
 
 /*const useTitle = (initialTitle: any) => {
   const [title, setTitle] = useState(initialTitle);
@@ -29,7 +28,6 @@ function App() {
   const htmlTitle: any = document.querySelector("title");
   htmlTitle.innerText = "WEBTOON HUB";
   const [target_data, change_target_data] = useState(filtering_data);
-  const webtoon_view_rendering = () => {};
   const a_webtoon: JSX.Element[] = target_data.map((target_data, index: number) => (
     <View_a_webtoon
       key={index}
@@ -53,16 +51,16 @@ function App() {
     total_page_num = (total_webtoon_count - (total_webtoon_count % 9)) / 9 + 1;
     rest_webtoon_count = total_webtoon_count % 9;
   }
-  for (let i: number = 0; i < total_page_num; i++) {
+  for (let i: number = 1; i <= total_page_num; i++) {
     if (i < total_page_num - 1) {
       page_array[i] = {
-        page_item_start_num: i * 9,
-        page_item_end_num: i * 9 + 9,
+        page_item_start_num: (i - 1) * 9,
+        page_item_end_num: (i - 1) * 9 + 9,
       };
     } else {
       page_array[i] = {
-        page_item_start_num: i * 9,
-        page_item_end_num: i * 9 + rest_webtoon_count,
+        page_item_start_num: (i - 1) * 9,
+        page_item_end_num: (i - 1) * 9 + rest_webtoon_count,
       };
     }
   }
@@ -77,64 +75,111 @@ function App() {
       change_target_data(search_data(e.target.value));
     }
   };
-  const [view_start_num, change_view_start_num] = useState(page_array[page_array_num].page_item_start_num);
-  const [view_end_num, change_view_end_num] = useState(page_array[page_array_num].page_item_end_num);
-  const Webtoon_area = () => {
-    let view_webtoon = a_webtoon.slice(view_start_num, view_end_num);
-    return <ul className="content_area">{view_webtoon}</ul>;
-  };
-  const page_index: number[] = [page_array_num, page_array_num + 1, page_array_num + 2, page_array_num + 3, page_array_num + 4];
-  const View_page_index = () => {
-    return (
-      <span>
-        <li className="page_index">{page_index[0]}</li>
-        <li className="page_index">{page_index[1]}</li>
-        <li className="page_index">{page_index[2]}</li>
-        <li className="page_index">{page_index[3]}</li>
-        <li className="page_index">{page_index[4]}</li>
-      </span>
-    );
+
+  //페이지 인덱스
+  const page_index_maker = (first_page_array_num: number) => {
+    let index: number[] = [];
+    for (let i = 0; i < 6; i++) {
+      index[i] = first_page_array_num + i;
+    }
+    return index;
   };
 
+  //하단 페이지 : 이동
+  const [view_start_num, change_view_start_num] = useState(0);
+  const [view_end_num, change_view_end_num] = useState(9);
+  const change_view_index = (num: number): void => {
+    change_view_start_num(page_array[num].page_item_start_num);
+    change_view_end_num(page_array[num].page_item_end_num);
+  };
+  //하단 페이지 : 보여지는 숫자값 변경&이동
+  const [page_index, part_of_change_page_index] = useState(page_index_maker(page_array_num));
+  const change_page_index = (num: number): void => {
+    part_of_change_page_index(page_index_maker(num));
+    change_view_index(num);
+  };
+
+  //하단 페이지 : 한번에 크게 이동
   const View_more_webtoon = (prop: any) => {
     return (
       <a
+        className="view_select_item"
         onClick={() => {
           switch (prop.move) {
             case ">":
-              if (page_array_num < total_page_num - 1) {
-                page_array_num = page_array_num + 1;
-                change_view_start_num(page_array[page_array_num].page_item_start_num);
-                change_view_end_num(page_array[page_array_num].page_item_end_num);
+              if (page_array_num + 10 < total_page_num) {
+                page_array_num = page_array_num + 5;
+                change_page_index(page_array_num);
+              } else if (page_array_num + 5 < total_page_num) {
+                page_array_num = total_page_num - 5;
+                change_page_index(page_array_num);
               }
               break;
             case "<":
-              if (page_array_num != 0) {
-                page_array_num = page_array_num - 1;
-                change_view_start_num(page_array[page_array_num].page_item_start_num);
-                change_view_end_num(page_array[page_array_num].page_item_end_num);
+              if (page_array_num - 5 > 1) {
+                page_array_num = page_array_num - 5;
+                change_page_index(page_array_num);
+              } else if (page_array_num != 1) {
+                page_array_num = 1;
+                change_page_index(page_array_num);
               }
               break;
           }
         }}
-        className="page_index"
       >
         {prop.txt}
       </a>
     );
   };
-  function Filter_option(prop: any) {
+
+  const Webtoon_area = () => {
+    let view_webtoon = a_webtoon.slice(view_start_num, view_end_num);
+    return <ul className="content_area">{view_webtoon}</ul>;
+  };
+
+  const View_page_index = () => {
+    let view_page_index: JSX.Element[] = [];
+    for (let i = 0; i < 6; i++) {
+      view_page_index.push(
+        <a
+          className="view_select_item"
+          onClick={() => {
+            change_view_index(page_index[i]);
+          }}
+        >
+          {page_index[i]}
+        </a>,
+      );
+    }
     return (
-      <li
-        onClick={() => {
-          change_target_data(filter_data(prop.filter_num));
-        }}
-        className="filter_option"
-      >
-        <a>{prop.weekday}</a>
-      </li>
+      <span className="view_select">
+        <View_more_webtoon move="<" txt="<" />
+        {view_page_index}
+        <View_more_webtoon move=">" txt=">" />
+      </span>
     );
-  }
+  };
+
+  const Webtoon_filter = () => {
+    let options: JSX.Element[] = [];
+    const index: string[] = ["일", "월", "화", "수", "목", "금", "토", "완결"];
+    const Filter_option = (prop: any) => {
+      return (
+        <li
+          onClick={() => {
+            change_target_data(filter_data(prop.filter_num));
+          }}
+          className="filter_option"
+        >
+          <a>{prop.weekday}</a>
+        </li>
+      );
+    };
+    for (let i = 0; i < 8; i++) {
+      options[i] = <Filter_option filter_num={i} weekday={index[i]} />;
+    }
+    return <ul className="filter_container">{options}</ul>;
+  };
 
   return (
     <div className="body">
@@ -142,22 +187,9 @@ function App() {
         <input type={"text"} value={search_txt} className="top_bar_search_box" onChange={set_search_txt} />
         <span className="top_bar_item">/ SEARCH</span>
       </div>
-      <ul className="filter_container">
-        <Filter_option filter_num="1" weekday="월" />
-        <Filter_option filter_num="2" weekday="화" />
-        <Filter_option filter_num="3" weekday="수" />
-        <Filter_option filter_num="4" weekday="목" />
-        <Filter_option filter_num="5" weekday="금" />
-        <Filter_option filter_num="6" weekday="토" />
-        <Filter_option filter_num="0" weekday="일" />
-        <Filter_option filter_num="7" weekday="완결" />
-      </ul>
+      <Webtoon_filter />
       <Webtoon_area />
-      <span>
-        <View_more_webtoon move="<" txt="<" />
-        <View_page_index />
-        <View_more_webtoon move=">" txt=">" />
-      </span>
+      <View_page_index />
     </div>
   );
 }
