@@ -67,11 +67,14 @@ function App() {
 
   //검색 기능
   const [search_txt, change_search_txt] = useState("");
+  const [fully_loading, change_fully_loading] = useState(false);
   const set_search_txt = (e: any) => {
     change_search_txt(e.target.value);
     if (e.target.value == "") {
+      change_fully_loading(false);
       change_target_data(filtering_data);
     } else {
+      change_fully_loading(true);
       change_target_data(search_data(e.target.value));
     }
   };
@@ -133,8 +136,13 @@ function App() {
   };
 
   const Webtoon_area = () => {
-    let view_webtoon = a_webtoon.slice(view_start_num, view_end_num);
-    return <ul className="content_area">{view_webtoon}</ul>;
+    let viewing_webtoon: JSX.Element[];
+    if (fully_loading) {
+      viewing_webtoon = a_webtoon;
+    } else {
+      viewing_webtoon = a_webtoon.slice(view_start_num, view_end_num);
+    }
+    return <ul className="content_area">{viewing_webtoon}</ul>;
   };
 
   const View_page_index = () => {
@@ -145,19 +153,24 @@ function App() {
           className="view_select_item"
           onClick={() => {
             change_view_index(page_index[i]);
+            window.scrollTo(0, 0);
           }}
         >
           {page_index[i]}
         </a>,
       );
     }
-    return (
-      <span className="view_select">
-        <View_more_webtoon move="<" txt="<" />
-        {view_page_index}
-        <View_more_webtoon move=">" txt=">" />
-      </span>
-    );
+    if (fully_loading) {
+      return <span className="view_select" />;
+    } else {
+      return (
+        <span className="view_select">
+          <View_more_webtoon move="<" txt="<" />
+          {view_page_index}
+          <View_more_webtoon move=">" txt=">" />
+        </span>
+      );
+    }
   };
 
   const Webtoon_filter = () => {
@@ -168,8 +181,10 @@ function App() {
         <li
           onClick={() => {
             page_array_num = 1;
+            change_search_txt("");
             change_page_index(page_array_num);
             change_target_data(filter_data(prop.filter_num));
+            window.scrollTo(0, 0);
           }}
           className="filter_option"
         >
