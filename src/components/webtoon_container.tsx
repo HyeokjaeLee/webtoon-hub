@@ -21,7 +21,6 @@ class View_a_webtoon extends React.Component<A_webtoon_info> {
                     fontSize: "10px",
                     listStyle: "none",
                     textAlign: "right",
-                    color: "white",
                   }}
                 >
                   {service_and_state}

@@ -13,17 +13,6 @@
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
 .App-link {
   color: #61dafb;
 }
@@ -37,20 +26,21 @@
   }
 }
 
+a {
+  cursor: pointer;
+}
 a:link {
   text-decoration: none;
-  color: #999696; /*기존 색상코드 #999696; > 블랙으로 수정*/
+  color: #f2aa4c; /*기존 색상코드 #999696; > 블랙으로 수정*/
 }
 a:visited {
-  text-decoration: none;
-  color: #999696;
+  color: #f2aa4c;
 }
 a:active {
-  text-decoration: none;
-  color: #999696;
+  color: #f2aa4c;
 }
 a:hover {
-  color: #bfbcbc;
+  color: #f2aa4c;
 }
 
 @font-face {
@@ -66,13 +56,17 @@ input:focus {
   outline: none;
 }
 
+li.on {
+  color: red;
+}
+
 .body {
   font-family: "main_font";
-  background-color: #141414;
+  background-color: #101820;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  color: white;
+  color: #f2aa4c;
   font-size: calc(10px + 2vmin);
   width: 100%;
   overflow: hidden;
@@ -81,18 +75,18 @@ input:focus {
 .top_bar {
   width: 100%;
   display: flex;
-  background-color: #3a3a3a;
+  background-color: #f2aa4c;
 }
 
 .top_bar_search_box {
   font-family: "main_font";
-  background-color: #3a3a3a;
+  background-color: #f2aa4c;
   padding-top: 1%;
   padding-bottom: 1%;
   width: 70%;
   height: 30px;
   border: none;
-  color: white;
+  color: #101820;
   font-size: 25px;
 }
 
@@ -116,7 +110,7 @@ input:focus {
   display: flex;
   padding-top: 1%;
   padding-bottom: 1%;
-  color: white;
+  color: #101820;
   font-size: 20px;
 }
 
@@ -156,11 +150,12 @@ input:focus {
   border-top-left-radius: 10px;
   padding: 5% 5%;
   width: 86%;
-  background-color: #3a3a3a;
+  background-color: #f2aa4c;
   word-break: keep-all;
   line-height: 60%;
   margin-top: 10px;
   text-align: left;
+  color: #101820;
 }
 .filter_container {
   margin-top: 5%;

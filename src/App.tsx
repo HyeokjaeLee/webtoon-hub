@@ -136,7 +136,6 @@ function App() {
       </a>
     );
   };
-
   const Webtoon_area = () => {
     let viewing_webtoon: JSX.Element[] = a_webtoon.slice(view_start_num, view_end_num);
     if (fully_loading) {
@@ -180,28 +179,29 @@ function App() {
     const index: string[] = ["일", "월", "화", "수", "목", "금", "토", "완결"];
     const Filter_option = (prop: any) => {
       return (
-        <li
-          onClick={() => {
-            change_search_txt("");
-            change_fully_loading(false);
-            change_target_data(filter_data(prop.filter_num));
-            page_array_num = 1;
-            change_view_start_num(0);
-            change_view_end_num(9);
-            window.scrollTo(0, 0);
-          }}
-          className="filter_option"
-        >
-          <a>{prop.weekday}</a>
+        <li className="filter_option">
+          <a
+            id={prop.id}
+            onClick={() => {
+              change_search_txt("");
+              change_fully_loading(false);
+              change_target_data(filter_data(prop.filter_num));
+              page_array_num = 1;
+              change_view_start_num(0);
+              change_view_end_num(9);
+              window.scrollTo(0, 0);
+            }}
+          >
+            {prop.weekday}
+          </a>
         </li>
       );
     };
     for (let i = 0; i < 8; i++) {
-      options[i] = <Filter_option filter_num={i} weekday={index[i]} />;
+      options[i] = <Filter_option filter_num={i} weekday={index[i]} id={"option_" + i} />;
     }
     return <ul className="filter_container">{options}</ul>;
   };
-
   return (
     <div className="body">
       <div className="top_bar">
