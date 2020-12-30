@@ -1,7 +1,9 @@
 import View_a_webtoon from "./components/webtoon_container";
+import KakaoSignUp from "./components/kakao_login.jsx";
 import React, { useState } from "react";
 import type { A_webtoon_info, Page_index } from "./modules/base_modules";
 import { get_json_data } from "./modules/base_modules";
+import Modal from "react-modal";
 import "./App.css";
 const webtoon_api_url = "https://toy-projects-api.herokuapp.com/webtoon/all";
 var today_weeknum = new Date().getDay();
@@ -24,10 +26,41 @@ let filtering_data: A_webtoon_info[] = webtoon_data.filter(function (element: A_
   return element.weekday == today_weeknum;
 });
 
+const customStyles = {
+  content: {
+    top: "50%",
+    height: "50%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
+Modal.setAppElement("#root");
+
 function App() {
+  //modal
+  var subtitle: any;
+  const [modalIsOpen, setIsOpen] = React.useState(false);
+  function openModal() {
+    setIsOpen(true);
+  }
+
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+    subtitle.style.color = "#101820";
+    subtitle.style.fontFamily = "main_font";
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
+
   const htmlTitle: any = document.querySelector("title");
   htmlTitle.innerText = "WEBTOON HUB";
   const [target_data, change_target_data] = useState(filtering_data);
+  const [Userid, setUserid] = useState("guest");
   const a_webtoon: JSX.Element[] = target_data.map((target_data, index: number) => (
     <View_a_webtoon
       key={index}
@@ -206,11 +239,21 @@ function App() {
     <div className="body">
       <div className="top_bar">
         <input type={"text"} value={search_txt} className="top_bar_search_box" onChange={set_search_txt} />
-        <span className="top_bar_item">/SEARCH</span>
+        <span className="top_bar_item">
+          /SEARCH
+          <li style={{ paddingLeft: "20px" }} onClick={openModal}>
+            Login
+          </li>
+          <Modal isOpen={modalIsOpen} onAfterOpen={afterOpenModal} onRequestClose={closeModal} style={customStyles} contentLabel="Example Modal">
+            <h2 ref={(_subtitle) => (subtitle = _subtitle)}>WEBTOONHUB</h2>
+            <KakaoSignUp setUserid={setUserid} />
+          </Modal>
+        </span>
       </div>
       <Webtoon_filter />
       <Webtoon_area />
       <View_page_index />
+      {Userid}
     </div>
   );
 }

@@ -19,7 +19,11 @@ Code for creating api : [link](https://github.com/HyeokjaeLee/Toy-projects-API)
 - [x] add page index<br>
       (ver 0.4.0)<br>
 - [x] clear up fade-in animation<br>
-      (ver 0.4.2)
+      (ver 0.4.2)<br>
+- [x] add login modal<br>
+      (ver 0.5.0)<br>
+- [x] add Kakao login API<br>
+      (ver 0.5.0)<br>
 - [ ] Improved rendering methods<br>
 - [ ] Create pc version web<br>
 - [ ] Ai Webtoon Recommendation<br>

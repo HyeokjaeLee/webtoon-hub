@@ -56,8 +56,8 @@ input:focus {
   outline: none;
 }
 
-li.on {
-  color: red;
+li {
+  list-style: none;
 }
 
 .body {
