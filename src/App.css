@@ -31,16 +31,16 @@ a {
 }
 a:link {
   text-decoration: none;
-  color: #f2aa4c; /*기존 색상코드 #999696; > 블랙으로 수정*/
+  color: #02343f; /*기존 색상코드 #999696; > 블랙으로 수정*/
 }
 a:visited {
-  color: #f2aa4c;
+  color: #02343f;
 }
 a:active {
-  color: #f2aa4c;
+  color: #02343f;
 }
 a:hover {
-  color: #f2aa4c;
+  color: #02343f;
 }
 
 @font-face {
@@ -62,11 +62,11 @@ li {
 
 .body {
   font-family: "main_font";
-  background-color: #101820;
+  background-color: #f0edcc;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  color: #f2aa4c;
+  color: #02343f;
   font-size: calc(10px + 2vmin);
   width: 100%;
   overflow: hidden;
@@ -75,18 +75,18 @@ li {
 .top_bar {
   width: 100%;
   display: flex;
-  background-color: #f2aa4c;
+  background-color: #02343f;
 }
 
 .top_bar_search_box {
   font-family: "main_font";
-  background-color: #f2aa4c;
+  background-color: #02343f;
   padding-top: 1%;
   padding-bottom: 1%;
   width: 70%;
   height: 30px;
   border: none;
-  color: #101820;
+  color: #f0edcc;
   font-size: 25px;
 }
 
@@ -110,7 +110,7 @@ li {
   display: flex;
   padding-top: 1%;
   padding-bottom: 1%;
-  color: #101820;
+  color: #f0edcc;
   font-size: 20px;
 }
 
@@ -150,12 +150,12 @@ li {
   border-top-left-radius: 10px;
   padding: 5% 5%;
   width: 86%;
-  background-color: #f2aa4c;
+  background-color: #02343f;
   word-break: keep-all;
   line-height: 60%;
   margin-top: 10px;
   text-align: left;
-  color: #101820;
+  color: #f0edcc;
 }
 .filter_container {
   margin-top: 5%;

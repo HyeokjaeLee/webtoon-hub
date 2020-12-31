@@ -5,26 +5,14 @@ import type { A_webtoon_info, Page_index } from "./modules/base_modules";
 import { get_json_data } from "./modules/base_modules";
 import Modal from "react-modal";
 import "./App.css";
+
 const webtoon_api_url = "https://toy-projects-api.herokuapp.com/webtoon/all";
-var today_weeknum = new Date().getDay();
-let page_array_num: number = 1;
+const today_weeknum = new Date().getDay();
+const view_webtoon_count: number = 24;
+const webtoon_data: A_webtoon_info[] = get_json_data(webtoon_api_url);
 
-/*const useTitle = (initialTitle: any) => {
-  const [title, setTitle] = useState(initialTitle);
-  const updateTitle = () => {
-    const htmlTitle: any = document.querySelector("title");
-    htmlTitle.innerText = title;
-  };
-  useEffect(updateTitle, [title]);
-  return setTitle;
-};
- const titleUpdater = useTitle("Loading...");
-setTimeout(() => titleUpdater("Home"), 1000);*/
-
-let webtoon_data: A_webtoon_info[] = get_json_data(webtoon_api_url);
-let filtering_data: A_webtoon_info[] = webtoon_data.filter(function (element: A_webtoon_info) {
-  return element.weekday == today_weeknum;
-});
+//const htmlTitle: any = document.querySelector("title");
+//htmlTitle.innerText = "WEBTOON HUB";
 
 const customStyles = {
   content: {
@@ -57,11 +45,15 @@ function App() {
     setIsOpen(false);
   }
 
-  const htmlTitle: any = document.querySelector("title");
-  htmlTitle.innerText = "WEBTOON HUB";
-  const [target_data, change_target_data] = useState(filtering_data);
-  const [Userid, setUserid] = useState("guest");
-  const a_webtoon: JSX.Element[] = target_data.map((target_data, index: number) => (
+  //초기 값은 오늘날짜 웹툰
+  const [target_data, change_target_data] = useState(
+    webtoon_data.filter(function (element: A_webtoon_info) {
+      return element.weekday == today_weeknum;
+    }),
+  );
+
+  const [Userid, setUserid] = useState("Guest");
+  let webtoons: JSX.Element[] = target_data.map((target_data, index: number) => (
     <View_a_webtoon
       key={index}
       title={target_data.title}
@@ -74,41 +66,66 @@ function App() {
     ></View_a_webtoon>
   ));
 
-  let total_page_num: number;
-  let rest_webtoon_count: number = 0;
-  let page_array: Page_index[] = [];
-  let total_webtoon_count: number = a_webtoon.length;
-  if (total_webtoon_count % 9 == 0) {
-    total_page_num = total_webtoon_count / 9;
-  } else {
-    total_page_num = (total_webtoon_count - (total_webtoon_count % 9)) / 9 + 1;
-    rest_webtoon_count = total_webtoon_count % 9;
-  }
-  for (let i: number = 1; i <= total_page_num; i++) {
-    if (i < total_page_num) {
-      page_array[i] = {
-        page_item_start_num: (i - 1) * 9,
-        page_item_end_num: (i - 1) * 9 + 9,
-      };
+  const [viewing_first_page_num, set_viewing_first_page_num] = useState(1);
+
+  const get_page_num_info = (total_webtoon_count: number) => {
+    let total_page_num: number;
+    let rest_webtoon_count: number = 0;
+    if (total_webtoon_count % view_webtoon_count == 0) {
+      total_page_num = total_webtoon_count / view_webtoon_count;
     } else {
-      page_array[i] = {
-        page_item_start_num: (i - 1) * 9,
-        page_item_end_num: (i - 1) * 9 + rest_webtoon_count,
-      };
+      total_page_num = (total_webtoon_count - (total_webtoon_count % view_webtoon_count)) / view_webtoon_count + 1;
+      rest_webtoon_count = total_webtoon_count % view_webtoon_count;
     }
-  }
+    return {
+      total_page_num: total_page_num,
+      rest_webtoon_count: rest_webtoon_count,
+    };
+  };
+
+  const get_page_detail_info_array = (total_page_num: number, rest_webtoon_count: number): Page_index[] => {
+    let page_array: Page_index[] = [];
+    for (let i: number = 1; i <= total_page_num; i++) {
+      if (i < total_page_num) {
+        page_array[i] = {
+          page_item_start_num: (i - 1) * view_webtoon_count,
+          page_item_end_num: (i - 1) * view_webtoon_count + view_webtoon_count,
+        };
+      } else {
+        page_array[i] = {
+          page_item_start_num: (i - 1) * view_webtoon_count,
+          page_item_end_num: (i - 1) * view_webtoon_count + rest_webtoon_count,
+        };
+      }
+    }
+    return page_array;
+  };
+
+  let page_num_info = get_page_num_info(webtoons.length);
+  let total_page_num: number = page_num_info.total_page_num;
+  let rest_webtoon_count: number = page_num_info.rest_webtoon_count;
+  let page_array: Page_index[] = get_page_detail_info_array(total_page_num, rest_webtoon_count);
 
   const [view_start_num, change_view_start_num] = useState(0);
-  const [view_end_num, change_view_end_num] = useState(9);
+  const [view_end_num, change_view_end_num] = useState(view_webtoon_count);
 
   //검색 기능
   const [search_txt, change_search_txt] = useState("");
   const [fully_loading, change_fully_loading] = useState(false);
+
+  function search_data(input_txt: string) {
+    var change_target_data = webtoon_data.filter(function (element: A_webtoon_info) {
+      return element.title.includes(input_txt) || element.artist.includes(input_txt);
+    });
+    return change_target_data;
+  }
+
   const set_search_txt = (e: any) => {
+    const before_search_save = target_data;
     change_search_txt(e.target.value);
     if (e.target.value == "") {
       change_fully_loading(false);
-      change_target_data(filtering_data);
+      change_target_data(before_search_save);
     } else {
       change_fully_loading(true);
       change_target_data(search_data(e.target.value));
@@ -116,22 +133,23 @@ function App() {
   };
 
   //페이지 인덱스
-  const page_index_maker = (first_page_array_num: number) => {
+  const page_index_maker = (first_viewing_first_page_num: number) => {
     let index: number[] = [];
     for (let i = 0; i < 6; i++) {
-      index[i] = first_page_array_num + i;
+      if (first_viewing_first_page_num + i <= total_page_num) {
+        index.push(first_viewing_first_page_num + i);
+      }
     }
     return index;
   };
 
   //하단 페이지 : 이동
-
   const change_view_index = (num: number): void => {
     change_view_start_num(page_array[num].page_item_start_num);
     change_view_end_num(page_array[num].page_item_end_num);
   };
   //하단 페이지 : 보여지는 숫자값 변경&이동
-  const [page_index, part_of_change_page_index] = useState(page_index_maker(page_array_num));
+  const [page_index, part_of_change_page_index] = useState(page_index_maker(viewing_first_page_num));
   const change_page_index = (num: number): void => {
     part_of_change_page_index(page_index_maker(num));
     change_view_index(num);
@@ -145,21 +163,21 @@ function App() {
         onClick={() => {
           switch (prop.move) {
             case ">":
-              if (page_array_num + 10 < total_page_num) {
-                page_array_num = page_array_num + 5;
-                change_page_index(page_array_num);
-              } else if (page_array_num + 5 < total_page_num) {
-                page_array_num = total_page_num - 5;
-                change_page_index(page_array_num);
+              if (viewing_first_page_num + 10 < total_page_num) {
+                set_viewing_first_page_num(viewing_first_page_num + 5);
+                change_page_index(viewing_first_page_num);
+              } else if (viewing_first_page_num + 5 < total_page_num) {
+                set_viewing_first_page_num(total_page_num - 5);
+                change_page_index(viewing_first_page_num);
               }
               break;
             case "<":
-              if (page_array_num - 5 > 1) {
-                page_array_num = page_array_num - 5;
-                change_page_index(page_array_num);
-              } else if (page_array_num != 1) {
-                page_array_num = 1;
-                change_page_index(page_array_num);
+              if (viewing_first_page_num - 5 > 1) {
+                set_viewing_first_page_num(viewing_first_page_num - 5);
+                change_page_index(viewing_first_page_num);
+              } else if (viewing_first_page_num != 1) {
+                set_viewing_first_page_num(1);
+                change_page_index(viewing_first_page_num);
               }
               break;
           }
@@ -170,11 +188,11 @@ function App() {
     );
   };
   const Webtoon_area = () => {
-    let viewing_webtoon: JSX.Element[] = a_webtoon.slice(view_start_num, view_end_num);
+    let viewing_webtoon: JSX.Element[] = webtoons.slice(view_start_num, view_end_num);
     if (fully_loading) {
-      viewing_webtoon = a_webtoon;
+      viewing_webtoon = webtoons;
     } else {
-      viewing_webtoon = a_webtoon.slice(view_start_num, view_end_num);
+      viewing_webtoon = webtoons.slice(view_start_num, view_end_num);
     }
     return <ul className="content_area">{viewing_webtoon}</ul>;
   };
@@ -216,12 +234,10 @@ function App() {
           <a
             id={prop.id}
             onClick={() => {
+              set_viewing_first_page_num(1);
               change_search_txt("");
               change_fully_loading(false);
               change_target_data(filter_data(prop.filter_num));
-              page_array_num = 1;
-              change_view_start_num(0);
-              change_view_end_num(9);
               window.scrollTo(0, 0);
             }}
           >
@@ -261,13 +277,6 @@ function App() {
 function filter_data(num: number) {
   var change_target_data = webtoon_data.filter(function (element: A_webtoon_info) {
     return element.weekday == num;
-  });
-  return change_target_data;
-}
-
-function search_data(input_txt: string) {
-  var change_target_data = webtoon_data.filter(function (element: A_webtoon_info) {
-    return element.title.includes(input_txt) || element.artist.includes(input_txt);
   });
   return change_target_data;
 }
