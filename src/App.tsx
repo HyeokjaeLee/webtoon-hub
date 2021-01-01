@@ -2,7 +2,7 @@ import View_a_webtoon from "./components/webtoon_container";
 import KakaoSignUp from "./components/kakao_login.jsx";
 import React, { useState } from "react";
 import type { A_webtoon_info, Page_index } from "./modules/base_modules";
-import { get_json_data } from "./modules/base_modules";
+import { get_json_data, empty_webtoon } from "./modules/base_modules";
 import Modal from "react-modal";
 import "./App.css";
 
@@ -46,7 +46,7 @@ function App() {
   }
 
   //초기 값은 오늘날짜 웹툰
-  const [target_data, change_target_data] = useState(
+  const [target_data, change_target_data] = useState<A_webtoon_info[]>(
     webtoon_data.filter(function (element: A_webtoon_info) {
       return element.weekday == today_weeknum;
     }),
@@ -109,6 +109,12 @@ function App() {
   const [view_start_num, change_view_start_num] = useState(0);
   const [view_end_num, change_view_end_num] = useState(view_webtoon_count);
 
+  //검색전 보던 페이지 저장
+  const [save_page, set_save_page] = useState<A_webtoon_info[]>(empty_webtoon);
+  const make_save_page = () => {
+    set_save_page(target_data);
+  };
+
   //검색 기능
   const [search_txt, change_search_txt] = useState("");
   const [fully_loading, change_fully_loading] = useState(false);
@@ -121,11 +127,10 @@ function App() {
   }
 
   const set_search_txt = (e: any) => {
-    const before_search_save = target_data;
     change_search_txt(e.target.value);
     if (e.target.value == "") {
       change_fully_loading(false);
-      change_target_data(before_search_save);
+      change_target_data(save_page);
     } else {
       change_fully_loading(true);
       change_target_data(search_data(e.target.value));
@@ -149,9 +154,9 @@ function App() {
     change_view_end_num(page_array[num].page_item_end_num);
   };
   //하단 페이지 : 보여지는 숫자값 변경&이동
-  const [page_index, part_of_change_page_index] = useState(page_index_maker(viewing_first_page_num));
+  const [page_index, set_page_index] = useState(page_index_maker(viewing_first_page_num));
   const change_page_index = (num: number): void => {
-    part_of_change_page_index(page_index_maker(num));
+    set_page_index(page_index_maker(num));
     change_view_index(num);
   };
 
@@ -163,11 +168,8 @@ function App() {
         onClick={() => {
           switch (prop.move) {
             case ">":
-              if (viewing_first_page_num + 10 < total_page_num) {
+              if (viewing_first_page_num < total_page_num) {
                 set_viewing_first_page_num(viewing_first_page_num + 5);
-                change_page_index(viewing_first_page_num);
-              } else if (viewing_first_page_num + 5 < total_page_num) {
-                set_viewing_first_page_num(total_page_num - 5);
                 change_page_index(viewing_first_page_num);
               }
               break;
@@ -177,7 +179,7 @@ function App() {
                 change_page_index(viewing_first_page_num);
               } else if (viewing_first_page_num != 1) {
                 set_viewing_first_page_num(1);
-                change_page_index(viewing_first_page_num);
+                change_page_index(1);
               }
               break;
           }
@@ -226,6 +228,13 @@ function App() {
   };
 
   const Webtoon_filter = () => {
+    function filter_data(num: number) {
+      var change_target_data = webtoon_data.filter(function (element: A_webtoon_info) {
+        return element.weekday == num;
+      });
+      return change_target_data;
+    }
+
     let options: JSX.Element[] = [];
     const index: string[] = ["일", "월", "화", "수", "목", "금", "토", "완결"];
     const Filter_option = (prop: any) => {
@@ -234,10 +243,11 @@ function App() {
           <a
             id={prop.id}
             onClick={() => {
-              set_viewing_first_page_num(1);
+              change_target_data(filter_data(prop.filter_num));
               change_search_txt("");
               change_fully_loading(false);
-              change_target_data(filter_data(prop.filter_num));
+              set_viewing_first_page_num(1);
+              change_page_index(viewing_first_page_num);
               window.scrollTo(0, 0);
             }}
           >
@@ -251,10 +261,11 @@ function App() {
     }
     return <ul className="filter_container">{options}</ul>;
   };
+
   return (
     <div className="body">
       <div className="top_bar">
-        <input type={"text"} value={search_txt} className="top_bar_search_box" onChange={set_search_txt} />
+        <input type={"text"} value={search_txt} className="top_bar_search_box" onClick={make_save_page} onChange={set_search_txt} />
         <span className="top_bar_item">
           /SEARCH
           <li style={{ paddingLeft: "20px" }} onClick={openModal}>
@@ -272,13 +283,6 @@ function App() {
       {Userid}
     </div>
   );
-}
-
-function filter_data(num: number) {
-  var change_target_data = webtoon_data.filter(function (element: A_webtoon_info) {
-    return element.weekday == num;
-  });
-  return change_target_data;
 }
 
 export default App;

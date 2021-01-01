@@ -31,6 +31,8 @@ const get_json_data = (url: string) => {
   return json_data;
 };
 
+const empty_webtoon: A_webtoon_info[] = [{ title: "", artist: "", img: "", url: "", state: "", service: "", weekday: -1 }];
+
 export type { A_webtoon_info };
 export type { Page_index };
-export { get_json_data };
+export { get_json_data, empty_webtoon };
