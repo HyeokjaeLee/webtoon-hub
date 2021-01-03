@@ -10,6 +10,42 @@ const webtoon_api_url = "https://toy-projects-api.herokuapp.com/webtoon/all";
 const today_weeknum = new Date().getDay();
 const view_webtoon_count: number = 24;
 const webtoon_data: A_webtoon_info[] = get_json_data(webtoon_api_url);
+const categorization_webtoon_data: [] = [];
+
+const classify_webtoon = (webtoon_data: A_webtoon_info[], view_webtoon_count: number) => {
+  //요일별로 분류
+  const weekday_webtoon = (week_num: number): A_webtoon_info[] => {
+    let weekday_webtoon_data = webtoon_data.filter(function (element: A_webtoon_info) {
+      return element.weekday == week_num;
+    });
+    return weekday_webtoon_data;
+  };
+  //한페이지에 보여줄 갯수로 묶음
+  const partition_webtoon = (weekday_webtoon_data: A_webtoon_info[], view_webtoon_count: number) => {
+    let partition_webtoon_data: A_webtoon_info[][] = [];
+    const weekday_webtoon_count: number = weekday_webtoon_data.length;
+    const rest_webtoon_count: number = weekday_webtoon_count % view_webtoon_count;
+    if (rest_webtoon_count == 0) {
+      const partition_count = weekday_webtoon_count / view_webtoon_count;
+      for (let i = 0; i < partition_count; i++) {
+        partition_webtoon_data.push(weekday_webtoon_data.slice(i * view_webtoon_count, i * view_webtoon_count + view_webtoon_count));
+      }
+    } else {
+      const partition_count = (weekday_webtoon_count - rest_webtoon_count) / view_webtoon_count;
+      for (let i = 0; i < partition_count; i++) {
+        partition_webtoon_data.push(weekday_webtoon_data.slice(i * view_webtoon_count, i * view_webtoon_count + view_webtoon_count));
+      }
+      partition_webtoon_data.push(weekday_webtoon_data.slice(weekday_webtoon_count - rest_webtoon_count - 1, weekday_webtoon_count - 1));
+    }
+    return partition_webtoon_data;
+  };
+
+  let classify_webtoon_data: A_webtoon_info[][][] = [];
+  for (let i = 0; i < 8; i++) {
+    classify_webtoon_data.push(partition_webtoon(weekday_webtoon(i), view_webtoon_count));
+  }
+  return classify_webtoon_data;
+};
 
 //const htmlTitle: any = document.querySelector("title");
 //htmlTitle.innerText = "WEBTOON HUB";
