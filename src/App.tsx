@@ -7,12 +7,13 @@ import { assemble_parts, search_data } from "./modules/classify_webtoon";
 import Modal from "react-modal";
 import "./App.css";
 //View Setting
-const a_page_webtoon_view_count = 24; //한페이지에 보여줄 웹툰 갯수
+const a_page_webtoon_view_count = 12; //한페이지에 보여줄 웹툰 갯수
 const a_page_index_view_count = 5; //한페이지에 보여줄 페이지 구분 갯수
 const webtoon_api_url = "https://toy-projects-api.herokuapp.com/webtoon/all";
 const today_weeknum = new Date().getDay();
 const webtoon_data: A_webtoon_info[] = get_json_data(webtoon_api_url);
 const classify_webtoon_data = assemble_parts(webtoon_data, a_page_webtoon_view_count);
+const week_index_array: string[] = ["일", "월", "화", "수", "목", "금", "토", "완결"];
 let page_index = 0;
 let week_index = today_weeknum;
 
@@ -34,18 +35,17 @@ const convert_data_to_view = (viewing_data: A_webtoon_info[]) => {
 
 const customStyles = {
   content: {
-    top: "50%",
-    height: "50%",
-    left: "50%",
-    right: "auto",
+    top: "0%",
+    height: "100%",
+    left: "auto",
+    right: "0%",
     bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
   },
 };
 Modal.setAppElement("#root");
 
 function App() {
+  const [viewing_title, set_viewing_title] = useState(week_index_array[week_index] + "요 웹툰");
   //modal
   let subtitle: any;
   const [modalIsOpen, setIsOpen] = React.useState(false);
@@ -73,6 +73,11 @@ function App() {
     change_fully_loading(false);
     week_index = week_num;
     page_index = page_num;
+    if (week_index < 7) {
+      set_viewing_title(week_index_array[week_index] + "요 웹툰");
+    } else {
+      set_viewing_title(week_index_array[week_index] + " 웹툰");
+    }
     change_viewing_data(classify_webtoon_data[week_index][page_index]);
     set_view_page_index(create_view_page_index(make_page_index_array(classify_webtoon_data[week_index]), page_index, a_page_index_view_count));
     window.scrollTo(0, 0);
@@ -166,17 +171,19 @@ function App() {
 
   const Webtoon_filter = () => {
     let options: JSX.Element[] = [];
-    const index: string[] = ["일", "월", "화", "수", "목", "금", "토", "완결"];
     for (let i = 0; i < 8; i++) {
-      options[i] = <Filter_option week_num={i} page_num={0} txt={index[i]} />;
+      options[i] = <Filter_option week_num={i} page_num={0} txt={week_index_array[i]} />;
     }
     return <ul className="filter_container">{options}</ul>;
   };
-
   const Webtoon_area = () => {
     if (fully_loading) {
     }
-    return <ul className="content_area">{viewing_webtoons}</ul>;
+    return (
+      <div>
+        <ul className="content_area">{viewing_webtoons}</ul>
+      </div>
+    );
   };
   const Page_index_area = () => {
     if (fully_loading) {
@@ -195,7 +202,9 @@ function App() {
   return (
     <div className="body">
       <div className="top_bar">
+        <span className="top_bar_item">{viewing_title}</span>
         <input
+          placeholder="SEARCH"
           type={"text"}
           value={search_txt}
           className="top_bar_search_box"
@@ -205,11 +214,14 @@ function App() {
           onChange={set_search_txt}
         />
         <span className="top_bar_item">
-          /SEARCH
           <li style={{ paddingLeft: "20px" }} onClick={openModal}>
-            Login
+            MY
           </li>
           <Modal isOpen={modalIsOpen} onAfterOpen={afterOpenModal} onRequestClose={closeModal} style={customStyles} contentLabel="Example Modal">
+            <a onClick={closeModal} style={{ float: "right" }}>
+              CLOSE
+            </a>
+            <br />
             {Userid}
             <h2 ref={(_subtitle) => (subtitle = _subtitle)}>WEBTOONHUB</h2>
             <KakaoSignUp setUserid={setUserid} />
@@ -218,7 +230,7 @@ function App() {
       </div>
       <Webtoon_filter />
       <Webtoon_area />
-      <span className="view_select">
+      <span className="view_select" style={{ paddingTop: "2.5%" }}>
         <Page_index_area />
       </span>
     </div>

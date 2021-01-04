@@ -18,7 +18,6 @@
     "react-kakao-login": "^2.0.2",
     "react-modal": "^3.12.1",
     "react-scripts": "4.0.1",
-    "styled-components": "^5.2.1",
     "typescript": "^4.1.3",
     "web-vitals": "^0.2.4"
   },
@@ -48,7 +47,5 @@
       "last 1 safari version"
     ]
   },
-  "devDependencies": {
-    "@types/styled-components": "^5.1.7"
-  }
+  "devDependencies": {}
 }
