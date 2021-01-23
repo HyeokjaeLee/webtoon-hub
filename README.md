@@ -36,6 +36,6 @@
 - [x] ~~clear up fade-in animation (ver 0.4.2)~~<br> - ~~fade-in 에니메이션 코드 정리~~
 - [x] add login modal (ver 0.5.0)<br> - 로그인 모달 추가
 - [x] add Kakao login API (ver 0.5.0)<br> - 카카오 로그인 API 추가
-- [ ] Improved rendering methods<br>
-- [ ] Create pc version web<br>
-- [ ] Ai Webtoon Recommendation<br>
+- [ ] Improved rendering methods<br> - 렌더링 메소드 개선
+- [ ] Create pc version web<br> - PC버전 생성
+- [ ] AI Webtoon Recommendation<br> - AI 웹툰 추천
