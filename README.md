@@ -3,7 +3,8 @@
   <img alt="Version" src="https://img.shields.io/badge/version-0.6.1-blue.svg?cacheSeconds=2592000" />
 </p>
 
-> Dashboards to view corona information from different countries
+> View multiple Webtoon services on one web<br>
+> 여러 웹툰 서비스를 한 웹에서 확인
 
 ### ✨ [Demo](https://hyeokjaelee.github.io/Webtoon-Hub-Web/)
 
