@@ -3,7 +3,7 @@
   <img alt="Version" src="https://img.shields.io/badge/version-0.6.1-blue.svg?cacheSeconds=2592000" />
 </p>
 
-> View multiple Webtoon services on one web<br>
+> View multiple Webtoon services on one web
 > 여러 웹툰 서비스를 한 웹에서 확인
 
 ### ✨ [Demo](https://hyeokjaelee.github.io/Webtoon-Hub-Web/)
@@ -29,13 +29,13 @@
 ## to-do
 
 - [x] create project with typescript (ver 0.1.0)<br> - 타입스크립트 프로젝트를 생성
-- [x] move from javascript to typescript(ver 0.2.0)<br> - javascript 프로젝트에서 타입스크립트 프로젝트로 옮김
-- [x] clear up the typescript code(ver 0.3.0)<br> - 타입스크립트 코드를 정리
-- [x] ~~add fade-in animation(ver 0.3.0)~~<br> - ~~fade-in 에니메이션 추가~~
-- [x] add page index(ver 0.4.0)<br> - 페이지 인덱스 추가
-- [x] ~~clear up fade-in animation(ver 0.4.2)~~<br> - ~~fade-in 에니메이션 코드 정리~~
-- [x] add login modal(ver 0.5.0)<br> - 로그인 모달 추가
-- [x] add Kakao login API(ver 0.5.0)<br> - 카카오 로그인 API 추가
+- [x] move from javascript to typescript (ver 0.2.0)<br> - javascript 프로젝트에서 타입스크립트 프로젝트로 옮김
+- [x] clear up the typescript code (ver 0.3.0)<br> - 타입스크립트 코드를 정리
+- [x] ~~add fade-in animation (ver 0.3.0)~~<br> - ~~fade-in 에니메이션 추가~~
+- [x] add page index (ver 0.4.0)<br> - 페이지 인덱스 추가
+- [x] ~~clear up fade-in animation (ver 0.4.2)~~<br> - ~~fade-in 에니메이션 코드 정리~~
+- [x] add login modal (ver 0.5.0)<br> - 로그인 모달 추가
+- [x] add Kakao login API (ver 0.5.0)<br> - 카카오 로그인 API 추가
 - [ ] Improved rendering methods<br>
 - [ ] Create pc version web<br>
 - [ ] Ai Webtoon Recommendation<br>
