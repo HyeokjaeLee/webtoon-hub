@@ -1,6 +1,6 @@
 <h1 align="center">WebtoonHub 👋</h1>
 <p>
-  <img alt="Version" src="https://img.shields.io/badge/version-1.0.4-blue.svg?cacheSeconds=2592000" />
+  <img alt="Version" src="https://img.shields.io/badge/version-0.6.1-blue.svg?cacheSeconds=2592000" />
 </p>
 
 > Dashboards to view corona information from different countries
@@ -10,8 +10,8 @@
 ~~javascript version~~ : [link](https://github.com/HyeokjaeLee/Save-Code/tree/master/webtoon-hub-js)<br>(It is no longer updated.)<br>
 ~~studies with other students~~ : [link](https://github.com/HyeokjaeLee/Save-Code/tree/master/Webtoon-Hub-University-main)<br>(It is no longer updated.)<br>
 <img style ="display:inline" src = "https://user-images.githubusercontent.com/71566740/105576434-1f919e00-5db6-11eb-8e2a-58ef9095ef00.jpg" width="30%">
-<img style ="display:inline" src = "https://user-images.githubusercontent.com/71566740/105576433-1dc7da80-5db6-11eb-809f-4272932ea398.jpg" width="30%">
 <img style ="display:inline" src = "https://user-images.githubusercontent.com/71566740/105576435-202a3480-5db6-11eb-938e-893fa83c5f87.jpg" width="30%">
+<img style ="display:inline" src = "https://user-images.githubusercontent.com/71566740/105576433-1dc7da80-5db6-11eb-809f-4272932ea398.jpg" width="30%">
 <img style ="display:inline" src = "https://user-images.githubusercontent.com/71566740/105576437-202a3480-5db6-11eb-8cc6-104e5582c6c8.jpg" width="30%">
 
 ## Author
