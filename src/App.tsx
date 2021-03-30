@@ -9,7 +9,7 @@ import "./App.css";
 //View Setting
 const a_page_webtoon_view_count = 12; //한페이지에 보여줄 웹툰 갯수
 const a_page_index_view_count = 5; //한페이지에 보여줄 페이지 구분 갯수
-const webtoon_api_url = "https://toy-projects-api.herokuapp.com/webtoon/all";
+const webtoon_api_url = "https://toy-projects-api.herokuapp.com/webtoon/info";
 const today_weeknum = new Date().getDay();
 const webtoon_data: A_webtoon_info[] = get_json_data(webtoon_api_url);
 const classify_webtoon_data = assemble_parts(webtoon_data, a_page_webtoon_view_count);
