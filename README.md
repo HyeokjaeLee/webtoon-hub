@@ -19,9 +19,8 @@
 
 ## Used
 
-- React
 - API
-  - Code for creating api : [Repository link](https://github.com/HyeokjaeLee/Toy-projects-API)
+  - Korean-Webtoon-API : [Repository link](https://github.com/HyeokjaeLee/Toy-projects-API)
   - KAKAO Login API
 
 ## to-do
