@@ -9,11 +9,11 @@
 
 ## ✨ [Demo](https://hyeokjaelee.github.io/Webtoon-Hub-mobile/)
 
-### :mobile: Mobile version
+### :phone: Mobile version
 
 <img style ="display:inline" src = "https://user-images.githubusercontent.com/71566740/105576434-1f919e00-5db6-11eb-8e2a-58ef9095ef00.jpg" width="20%"> <img style ="display:inline" src = "https://user-images.githubusercontent.com/71566740/105576437-202a3480-5db6-11eb-8cc6-104e5582c6c8.jpg" width="20%"> <img style ="display:inline" src = "https://user-images.githubusercontent.com/71566740/105576435-202a3480-5db6-11eb-938e-893fa83c5f87.jpg" width="20%"> <img style ="display:inline" src = "https://user-images.githubusercontent.com/71566740/105576433-1dc7da80-5db6-11eb-809f-4272932ea398.jpg" width="20%">
 
-### :pc: PC version : [link](https://github.com/HyeokjaeLee/Toy-projects-API)
+### :computer: PC version : [link](https://github.com/HyeokjaeLee/Toy-projects-API)
 
 <img style ="display:inline" src = "https://user-images.githubusercontent.com/71566740/113356057-ab0e4900-937c-11eb-84c9-33d9941942c7.png" width="80%">
 
