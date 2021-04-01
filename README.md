@@ -14,6 +14,8 @@ Mobile version
 
 PC version : [link](https://github.com/HyeokjaeLee/Toy-projects-API)
 
+<img style ="display:inline" src = "https://user-images.githubusercontent.com/71566740/113356057-ab0e4900-937c-11eb-84c9-33d9941942c7.png" width="80%">
+
 ## Used
 
 - React
