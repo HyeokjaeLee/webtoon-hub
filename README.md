@@ -1,4 +1,4 @@
-<h1 align="center">WebtoonHub 👋</h1>
+![header](https://capsule-render.vercel.app/api?type=rect&color=gradient&height=100&section=header&text=Webtoon%20Hub%20(mobile)&fontSize=30&fontAlign=73&fontAlignY=50)
 
 ![VERSION](https://img.shields.io/badge/version-0.6.1-blue.svg?cacheSeconds=2592000)
 
