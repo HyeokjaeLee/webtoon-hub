@@ -10,7 +10,7 @@
 ## ✨ Preview
 
 ### :phone: Mobile version : [Repository link](https://github.com/HyeokjaeLee/Webtoon-Hub-mobile)
-### [Demo Link](https://hyeokjaelee.github.io/Webtoon-Hub-mobile/)
+### [Demo Link](https://hyeokjaelee.github.io/webtoon-hub-mobile/)
 
 <img style ="display:inline" src = "https://user-images.githubusercontent.com/71566740/105576434-1f919e00-5db6-11eb-8e2a-58ef9095ef00.jpg" width="20%"> <img style ="display:inline" src = "https://user-images.githubusercontent.com/71566740/105576437-202a3480-5db6-11eb-8cc6-104e5582c6c8.jpg" width="20%"> <img style ="display:inline" src = "https://user-images.githubusercontent.com/71566740/105576435-202a3480-5db6-11eb-938e-893fa83c5f87.jpg" width="20%"> <img style ="display:inline" src = "https://user-images.githubusercontent.com/71566740/105576433-1dc7da80-5db6-11eb-809f-4272932ea398.jpg" width="20%">
 
