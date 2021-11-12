@@ -19,7 +19,9 @@
     "prettier": "^2.4.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
-    "sass": "^1.43.4"
+    "sass": "^1.43.4",
+    "axios": "^0.24.0",
+    "gatsby-plugin-typescript": "^4.1.2"
   },
   "repository": {
     "type": "git",
@@ -27,5 +29,6 @@
   },
   "bugs": {
     "url": "https://github.com/HyeokjaeLee/webtoon-hub/issues"
-  }
+  },
+  "dependencies": {}
 }
