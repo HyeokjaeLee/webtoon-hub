@@ -18,6 +18,7 @@ nav {
 main {
   display: flex;
   align-items: center;
+  justify-content: center;
 }
 
 .webtoon-list {
@@ -25,28 +26,32 @@ main {
   flex-wrap: wrap;
   justify-content: center;
   max-width: 50em;
-  gap: 1em;
+  gap: 1.5em;
   list-style: none;
 }
 
 .webtoon-link {
   display: flex;
+  height: 100%;
   flex-direction: column;
   color: $LIGHT;
   text-decoration: none;
   > svg {
-    width: 2em;
-    height: 2em;
+    width: 1.5em;
+    height: 1.5em;
     position: absolute;
-    border-top-left-radius: $borderRadius;
-    border-bottom-right-radius: $borderRadius;
+    border-radius: $borderRadius;
+    margin: 0.4em;
+    box-shadow: $boxShadow;
   }
 }
 
 .thumbnail {
-  width: 10em;
+  flex: 1;
+  object-fit: cover;
   border-top-left-radius: $borderRadius;
   border-top-right-radius: $borderRadius;
+  background-color: darken($LIGHT, 5%);
 }
 
 .info-wrap {
@@ -65,7 +70,16 @@ main {
   margin: 0;
 }
 
-.test {
-  background-color: white;
-  fill: white;
+.webtoon {
+  width: 10em;
+  border-radius: $borderRadius;
+  box-shadow: $boxShadow;
+  transition: box-shadow 0.2s ease-in-out;
+  @include hover {
+    box-shadow: $boxShadowHover;
+  }
+}
+
+::-webkit-scrollbar {
+  display: none;
 }

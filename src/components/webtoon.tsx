@@ -14,7 +14,7 @@ export default function Webtoon(props: { webtoonData: Webtoon.Data }) {
       <KakaoPage />
     )
   return (
-    <li>
+    <li className="webtoon">
       <a href={webtoonData.url} className="webtoon-link">
         {ServiceLogo}
         <img src={webtoonData.img} className="thumbnail" />
