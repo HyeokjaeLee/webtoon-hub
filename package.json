@@ -30,5 +30,7 @@
   "bugs": {
     "url": "https://github.com/HyeokjaeLee/webtoon-hub/issues"
   },
-  "dependencies": {}
+  "dependencies": {
+    "gatsby-plugin-react-svg": "^3.1.0"
+  }
 }

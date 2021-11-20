@@ -10,6 +10,7 @@ declare namespace Webtoon {
   interface Data {
     title: string
     author: string
+    url: string
     img: string
     service: string
     week: number

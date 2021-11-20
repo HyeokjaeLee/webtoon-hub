@@ -1,0 +1,31 @@
+@mixin if-mobile {
+  @media (hover: none) and (pointer: coarse) {
+    @content;
+  }
+}
+
+@mixin if-not-mobile {
+  @media (hover: hover) and (pointer: fine) {
+    @content;
+  }
+}
+
+@mixin hover {
+  @include if-not-mobile {
+    &:hover {
+      @content;
+    }
+  }
+}
+
+@mixin if-small-device {
+  @media (max-width: $mobileWidth) {
+    @content;
+  }
+}
+
+@mixin if-not-small-device {
+  @media (min-width: $mobileWidth) {
+    @content;
+  }
+}

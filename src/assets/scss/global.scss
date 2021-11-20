@@ -1,13 +1,203 @@
 @import "./libs";
 
-body {
-  background-color: $LIGHT;
+* {
+  box-sizing: border-box;
+}
+
+body,
+ul,
+li {
   padding: 0;
   margin: 0;
 }
 
-.main_nav {
+.main-nav {
+  margin: 0;
   background-color: $DARK;
+  display: flex;
   color: $LIGHT;
-  padding: 0.5em 1em;
+  padding: {
+    top: 1em;
+    right: 1em;
+    left: 1em;
+  }
+  > h1 {
+    margin: 0;
+    padding: 0;
+  }
+  white-space: nowrap;
+}
+.all-img {
+  width: 1.5em;
+  height: 1.5em;
+  background-color: $LIGHT;
+  color: $DARK;
+  border-radius: 50%;
+  font-weight: bold;
+  text-align: center;
+  margin-right: 0.5em;
+}
+
+.button-wrap {
+  display: flex;
+  flex: 1;
+  justify-content: end;
+  gap: 0.5em;
+  > button {
+    border: none;
+    height: 100%;
+    background-color: $DARK;
+    color: $LIGHT;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    @include hover {
+      background-color: $LIGHT;
+      color: $DARK;
+    }
+  }
+}
+
+.platform-list {
+  list-style: none;
+  display: flex;
+  flex: 1;
+  justify-content: end;
+  gap: 1em;
+  font-size: 1.1em;
+  overflow-x: scroll;
+  > li {
+    display: flex;
+    align-items: center;
+    border-radius: $borderRadius;
+    padding: {
+      left: 0.2em;
+      right: 0.5em;
+    }
+    transition: background-color 0.2s;
+    @include hover {
+      background-color: darken($LIGHT, 50%);
+    }
+  }
+  svg {
+    border-radius: 100%;
+    width: 1.5em;
+    height: 1.5em;
+    margin-right: 0.5em;
+  }
+}
+
+.sub-nav {
+  color: $LIGHT;
+  top: 0;
+  position: sticky;
+  padding: 1em;
+  margin: 0;
+  width: 100%;
+  background: $DARK;
+  z-index: 3;
+  box-shadow: 0 10px 5px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: center;
+}
+
+.week-list {
+  list-style: none;
+  display: flex;
+  gap: 1em;
+  font-size: 1.2em;
+  justify-content: start;
+  align-items: center;
+  overflow-x: scroll;
+
+  > li {
+    transition: color 0.2s, background-color 0.2s;
+    padding: 0.2em 0.5em;
+    border-radius: $borderRadius;
+    @include hover {
+      color: $DARK;
+      background-color: $LIGHT;
+    }
+    > a {
+      white-space: nowrap;
+    }
+  }
+}
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  position: relative;
+}
+
+footer {
+  font-weight: 100;
+  margin: 5em 0;
+  text-align: center;
+  color: darken($LIGHT, 30%);
+}
+
+.webtoon-list {
+  margin-top: 2em;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 50em;
+  gap: 1.5em;
+  list-style: none;
+}
+
+.webtoon-link {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  color: $LIGHT;
+  text-decoration: none;
+  > svg {
+    width: 1.5em;
+    height: 1.5em;
+    position: absolute;
+    border-radius: $borderRadius;
+    margin: 0.4em;
+    box-shadow: $boxShadow;
+  }
+}
+
+.thumbnail {
+  flex: 1;
+  object-fit: cover;
+  border-top-left-radius: $borderRadius;
+  border-top-right-radius: $borderRadius;
+  background-color: darken($LIGHT, 5%);
+}
+
+.info-wrap {
+  width: 10em;
+  background-color: $DARK;
+  padding: 0.5em;
+  border-bottom-left-radius: $borderRadius;
+  border-bottom-right-radius: $borderRadius;
+}
+
+.title {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.webtoon {
+  width: 10em;
+  border-radius: $borderRadius;
+  box-shadow: $boxShadow;
+  transition: box-shadow 0.2s ease-in-out;
+  @include hover {
+    box-shadow: $boxShadowHover;
+  }
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
