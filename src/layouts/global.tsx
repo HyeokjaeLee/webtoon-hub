@@ -15,11 +15,26 @@ export default function TemplateWrapper({ children }: any) {
     <WebtoonData.Provider value={{ data, setData }}>
       <nav className="main-nav">
         <h1>WEBTOON HUB</h1>
-        <ul className="platform-list">
-          <li>Search</li>
-          <li>Platform</li>
-        </ul>
-        <ul className="platform-list">
+        <div className="button-wrap">
+          <button>Search</button>
+          <button>Platform</button>
+        </div>
+      </nav>
+      <main>{children}</main>
+      <footer>
+        © HyeokjaeLee. All rights reserved. Powered by GitHub Pages.
+      </footer>
+    </WebtoonData.Provider>
+  )
+}
+
+async function set_webtoon_data(setData: Webtoon.SetState) {
+  const res = await axios.get("http://korea-webtoon-api.herokuapp.com/all")
+  setData(res.data)
+}
+
+/*
+  <ul className="platform-list">
           <li>
             <NaverWebtoon />
             Naver Webtoon
@@ -36,17 +51,4 @@ export default function TemplateWrapper({ children }: any) {
             <span className="all-img">A</span>
             All Platform
           </li>
-        </ul>
-      </nav>
-      <main>{children}</main>
-      <footer>
-        © HyeokjaeLee. All rights reserved. Powered by GitHub Pages.
-      </footer>
-    </WebtoonData.Provider>
-  )
-}
-
-async function set_webtoon_data(setData: Webtoon.SetState) {
-  const res = await axios.get("http://korea-webtoon-api.herokuapp.com/all")
-  setData(res.data)
-}
+        </ul> */

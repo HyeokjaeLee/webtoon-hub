@@ -37,6 +37,27 @@ li {
   text-align: center;
   margin-right: 0.5em;
 }
+
+.button-wrap {
+  display: flex;
+  flex: 1;
+  justify-content: end;
+  gap: 0.5em;
+  > button {
+    border: none;
+    height: 100%;
+    background-color: $DARK;
+    color: $LIGHT;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+    @include hover {
+      background-color: $LIGHT;
+      color: $DARK;
+    }
+  }
+}
+
 .platform-list {
   list-style: none;
   display: flex;
