@@ -15,5 +15,13 @@ module.exports = {
       },
     },
     `gatsby-plugin-sass`,
+    {
+      resolve: "gatsby-plugin-react-svg",
+      options: {
+        rule: {
+          include: /assets/.svg$,
+        },
+      },
+    },
   ],
 }
