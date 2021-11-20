@@ -10,10 +10,10 @@ export default function TemplateWrapper({ children }: any) {
 
   return (
     <WebtoonData.Provider value={{ data, setData }}>
-      <nav className="main_nav">
+      <nav>
         <h1>WEBTOON HUB</h1>
       </nav>
-      {children}
+      <main>{children}</main>
     </WebtoonData.Provider>
   )
 }

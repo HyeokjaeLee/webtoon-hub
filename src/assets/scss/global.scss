@@ -1,13 +1,71 @@
 @import "./libs";
 
+* {
+  box-sizing: border-box;
+}
+
 body {
-  background-color: $LIGHT;
   padding: 0;
   margin: 0;
 }
 
-.main_nav {
+nav {
   background-color: $DARK;
   color: $LIGHT;
   padding: 0.5em 1em;
+}
+
+main {
+  display: flex;
+  align-items: center;
+}
+
+.webtoon-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 50em;
+  gap: 1em;
+  list-style: none;
+}
+
+.webtoon-link {
+  display: flex;
+  flex-direction: column;
+  color: $LIGHT;
+  text-decoration: none;
+  > svg {
+    width: 2em;
+    height: 2em;
+    position: absolute;
+    border-top-left-radius: $borderRadius;
+    border-bottom-right-radius: $borderRadius;
+  }
+}
+
+.thumbnail {
+  width: 10em;
+  border-top-left-radius: $borderRadius;
+  border-top-right-radius: $borderRadius;
+}
+
+.info-wrap {
+  width: 10em;
+  background-color: $DARK;
+  padding: 0.5em;
+  border-bottom-left-radius: $borderRadius;
+  border-bottom-right-radius: $borderRadius;
+}
+
+.title {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0;
+}
+
+.test {
+  background-color: white;
+  fill: white;
 }
