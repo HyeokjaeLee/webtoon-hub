@@ -1,26 +1,23 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
-
+import "assets/scss/index.scss";
+import axios from "axios";
+import { Button } from "reactstrap";
 function App() {
+  console.log("test");
+  test();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="test">
+      <div className="App">
+        <Button color="info">info</Button>
+        <Button color="danger">danger</Button>
+        <Button color="success">success</Button>
+      </div>
     </div>
   );
 }
 
 export default App;
+
+async function test() {
+  const res = await axios.get("https://korea-webtoon-api.herokuapp.com/all");
+  const data: Webtoon.Data = res.data;
+}
