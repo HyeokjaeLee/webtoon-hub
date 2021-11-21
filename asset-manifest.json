@@ -1,23 +1,22 @@
 {
   "files": {
-    "main.css": "/webtoon-hub/static/css/main.8c8b27cf.chunk.css",
-    "main.js": "/webtoon-hub/static/js/main.41c30c73.chunk.js",
-    "main.js.map": "/webtoon-hub/static/js/main.41c30c73.chunk.js.map",
-    "runtime-main.js": "/webtoon-hub/static/js/runtime-main.dc530883.js",
-    "runtime-main.js.map": "/webtoon-hub/static/js/runtime-main.dc530883.js.map",
-    "static/js/2.e943c0b5.chunk.js": "/webtoon-hub/static/js/2.e943c0b5.chunk.js",
-    "static/js/2.e943c0b5.chunk.js.map": "/webtoon-hub/static/js/2.e943c0b5.chunk.js.map",
-    "static/js/3.b77c8419.chunk.js": "/webtoon-hub/static/js/3.b77c8419.chunk.js",
-    "static/js/3.b77c8419.chunk.js.map": "/webtoon-hub/static/js/3.b77c8419.chunk.js.map",
+    "main.css": "/webtoon-hub/static/css/main.af88a597.chunk.css",
+    "main.js": "/webtoon-hub/static/js/main.19fe7e1f.chunk.js",
+    "main.js.map": "/webtoon-hub/static/js/main.19fe7e1f.chunk.js.map",
+    "runtime-main.js": "/webtoon-hub/static/js/runtime-main.9740e905.js",
+    "runtime-main.js.map": "/webtoon-hub/static/js/runtime-main.9740e905.js.map",
+    "static/js/2.ca37440c.chunk.js": "/webtoon-hub/static/js/2.ca37440c.chunk.js",
+    "static/js/2.ca37440c.chunk.js.map": "/webtoon-hub/static/js/2.ca37440c.chunk.js.map",
+    "static/js/3.550fcf14.chunk.js": "/webtoon-hub/static/js/3.550fcf14.chunk.js",
+    "static/js/3.550fcf14.chunk.js.map": "/webtoon-hub/static/js/3.550fcf14.chunk.js.map",
     "index.html": "/webtoon-hub/index.html",
-    "static/css/main.8c8b27cf.chunk.css.map": "/webtoon-hub/static/css/main.8c8b27cf.chunk.css.map",
-    "static/js/2.e943c0b5.chunk.js.LICENSE.txt": "/webtoon-hub/static/js/2.e943c0b5.chunk.js.LICENSE.txt",
-    "static/media/logo.6ce24c58.svg": "/webtoon-hub/static/media/logo.6ce24c58.svg"
+    "static/css/main.af88a597.chunk.css.map": "/webtoon-hub/static/css/main.af88a597.chunk.css.map",
+    "static/js/2.ca37440c.chunk.js.LICENSE.txt": "/webtoon-hub/static/js/2.ca37440c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.dc530883.js",
-    "static/js/2.e943c0b5.chunk.js",
-    "static/css/main.8c8b27cf.chunk.css",
-    "static/js/main.41c30c73.chunk.js"
+    "static/js/runtime-main.9740e905.js",
+    "static/js/2.ca37440c.chunk.js",
+    "static/css/main.af88a597.chunk.css",
+    "static/js/main.19fe7e1f.chunk.js"
   ]
 }
