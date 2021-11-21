@@ -51,6 +51,6 @@ export default function Home() {
       </>
     )
   } else {
-    return <div></div>
+    return <div>서버가 꺼저있습니다.</div>
   }
 }
