@@ -10,7 +10,7 @@ export default function TemplateWrapper({ children }: any) {
   useEffect(() => {
     set_webtoon_data(setData)
   }, [])
-
+  console.log("test2")
   return (
     <WebtoonData.Provider value={{ data, setData }}>
       <nav className="main-nav">
