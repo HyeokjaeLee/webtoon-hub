@@ -30,6 +30,8 @@ export default function TemplateWrapper({ children }: any) {
 
 async function set_webtoon_data(setData: Webtoon.SetState) {
   const res = await axios.get("http://korea-webtoon-api.herokuapp.com/all")
+  console.log("test")
+  console.log(res.data)
   setData(res.data)
 }
 
