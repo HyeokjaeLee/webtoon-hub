@@ -76,13 +76,11 @@ export default () => {
                 />
               </li>
               <li>
-                <a>
-                  <PlatformButton
-                    icon={KakaoPage}
-                    setState={setSelectedPlatform}
-                    platform="KakaoPage"
-                  />
-                </a>
+                <PlatformButton
+                  icon={KakaoPage}
+                  setState={setSelectedPlatform}
+                  platform="KakaoPage"
+                />
               </li>
             </ul>
           </Collapse>
