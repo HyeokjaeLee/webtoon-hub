@@ -51,6 +51,6 @@ export default function Home() {
       </>
     )
   } else {
-    return <div></div>
+    return <div>Test</div>
   }
 }
