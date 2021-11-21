@@ -1,16 +1,12 @@
-import "assets/scss/index.scss";
+import "assets/scss/App.scss";
 import axios from "axios";
-import { Button } from "reactstrap";
+import Nav from "components/nav";
 function App() {
   console.log("test");
   test();
   return (
     <div className="test">
-      <div className="App">
-        <Button color="info">info</Button>
-        <Button color="danger">danger</Button>
-        <Button color="success">success</Button>
-      </div>
+      <Nav />
     </div>
   );
 }
