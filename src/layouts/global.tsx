@@ -4,11 +4,15 @@ import { WebtoonData } from "contexts/webtoon-data"
 import KakaoWebtoon from "img/kakao-webtoon.svg"
 import KakaoPage from "img/kakao-page.svg"
 import NaverWebtoon from "img/naver-webtoon.svg"
+import get_json_data from "functions/get-json-data"
 import axios from "axios"
 export default function TemplateWrapper({ children }: any) {
   const [data, setData]: [Webtoon.State, Webtoon.SetState] = useState(undefined)
   useEffect(() => {
-    set_webtoon_data(setData)
+    const webtoonData = get_json_data(
+      "http://korea-webtoon-api.herokuapp.com/all"
+    )
+    setData(webtoonData)
   }, [])
   console.log("test2")
   return (
