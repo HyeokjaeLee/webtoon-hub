@@ -16,7 +16,15 @@ export default function TemplateWrapper({ children }: any) {
       <nav className="main-nav">
         <h1>WEBTOON HUB</h1>
         <div className="button-wrap">
-          <button>Search</button>
+          <button
+            onClick={() => {
+              {
+                console.log("search")
+              }
+            }}
+          >
+            Search
+          </button>
           <button>Platform</button>
         </div>
       </nav>
