@@ -38,8 +38,8 @@ export default () => {
           WEBTOONHUB
         </NavbarBrand>
         <button
-          className="me-2"
-          onClick={function noRefCheck() {
+          className="nav-button"
+          onClick={() => {
             setIsSearchOpen(!isSearchOpen);
           }}
         >
@@ -47,7 +47,7 @@ export default () => {
         </button>
         <button
           className="nav-button"
-          onClick={function noRefCheck() {
+          onClick={() => {
             setIsPlatformOpen(!isPlatformOpen);
           }}
         >

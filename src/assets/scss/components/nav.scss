@@ -42,12 +42,15 @@
   fill: $LIGHT;
   width: 1.5em;
   height: 1.5em;
-  margin: 0 1.5em;
 }
 
 .navbar {
   background-color: $DARK;
   box-shadow: $boxShadow;
+}
+
+.nav-button {
+  margin: 0 0.8em;
 }
 
 .platform-button {
