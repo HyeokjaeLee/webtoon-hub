@@ -1,11 +1,14 @@
 @import "../libs";
 .platform-collapse {
   position: absolute;
-  background-color: $DARK;
-  color: $LIGHT;
   right: 1em;
-  border-radius: $borderRadius;
-  margin-top: 0.5em;
+  border-radius: $BORDER_RADIUS;
+  background-color: $LIGHT;
+  box-shadow: $BOX_SHADOW;
+  z-index: 4;
+}
+.search-collapse {
+  background-color: $LIGHT;
 }
 
 .platform-list {
@@ -16,7 +19,6 @@
   padding: 1.5em;
   gap: 1em;
   margin: 0;
-  box-shadow: $boxShadow;
   > li {
     > a {
       font-size: 1.2em;
@@ -28,10 +30,9 @@
 
 .platform-icon {
   border-radius: 50%;
-  border: 2px solid $LIGHT;
+  border: 4px solid $SUB_TEXT;
   width: 1.5em;
   height: 1.5em;
-  background-color: darken($LIGHT, 10%);
 }
 
 .selected-platform {
@@ -45,8 +46,7 @@
 }
 
 .navbar {
-  background-color: $DARK;
-  box-shadow: $boxShadow;
+  border-bottom: 4px solid $SUB_TEXT;
 }
 
 .nav-button {
@@ -54,7 +54,6 @@
 }
 
 .platform-button {
-  color: $LIGHT;
   font-size: 1.2em;
   display: flex;
   gap: 0.5em;

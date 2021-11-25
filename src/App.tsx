@@ -15,7 +15,7 @@ function App() {
     <WebtoonData.Provider value={{ data, setData }}>
       <Nav />
       <Routes>
-        <Route path="/" element={<Home />} />
+        <Route path="/" element={<Home test={"ss"} />} />
       </Routes>
     </WebtoonData.Provider>
   );

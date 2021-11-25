@@ -29,7 +29,7 @@ declare namespace Webtoon {
   }
   type SetState = React.Dispatch<React.SetStateAction<Data[]>>;
 
-  type State = undefined | Data[];
+  type State = Data[];
 
   type context = {
     data: State;
