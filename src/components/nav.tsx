@@ -5,6 +5,7 @@ import { ReactComponent as KakaoWebtoon } from "assets/img/kakao-webtoon.svg";
 import { ReactComponent as NaverWebtoon } from "assets/img/naver-webtoon.svg";
 import { ReactComponent as SearchIcon } from "assets/img/search.svg";
 import { ReactComponent as AllWebtoon } from "assets/img/all-webtoon.svg";
+import Search from "components/search";
 import { useState } from "react";
 
 function PlatformButton(prop: {
@@ -32,14 +33,15 @@ export default () => {
     <AllWebtoon className="platform-icon" />
   );
   return (
-    <div>
-      <Navbar className="navbar" dark>
+    <div className="nav-wrap">
+      <Search isOpen={isSearchOpen} setIsOpen={setIsSearchOpen} />
+      <Navbar className="navbar" light>
         <NavbarBrand className="me-auto" href="/">
           WEBTOONHUB
         </NavbarBrand>
         <button
-          className="me-2"
-          onClick={function noRefCheck() {
+          className="nav-button"
+          onClick={() => {
             setIsSearchOpen(!isSearchOpen);
           }}
         >
@@ -47,7 +49,7 @@ export default () => {
         </button>
         <button
           className="nav-button"
-          onClick={function noRefCheck() {
+          onClick={() => {
             setIsPlatformOpen(!isPlatformOpen);
           }}
         >
@@ -65,36 +67,26 @@ export default () => {
                 <PlatformButton
                   icon={NaverWebtoon}
                   setState={setSelectedPlatform}
-                  platform="NaverWebtoon"
+                  platform="Naver Webtoon"
                 />
               </li>
               <li>
                 <PlatformButton
                   icon={KakaoWebtoon}
                   setState={setSelectedPlatform}
-                  platform="KakaoWebtoon"
+                  platform="Kakao Webtoon"
                 />
               </li>
               <li>
                 <PlatformButton
                   icon={KakaoPage}
                   setState={setSelectedPlatform}
-                  platform="KakaoPage"
+                  platform="Kakao Page"
                 />
               </li>
             </ul>
           </Collapse>
         </button>
-        <Collapse navbar isOpen={isSearchOpen}>
-          <Nav navbar>
-            <NavItem>
-              <NavLink href="/components/">Components</NavLink>
-            </NavItem>
-            <NavItem>
-              <NavLink href="https://github.com/reactstrap/reactstrap">GitHub</NavLink>
-            </NavItem>
-          </Nav>
-        </Collapse>
       </Navbar>
     </div>
   );

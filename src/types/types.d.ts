@@ -8,12 +8,12 @@ declare namespace Webtoon {
    * @additional 추가정보
    */
   interface Data {
-    title: string
-    author: string
-    url: string
-    img: string
-    service: string
-    week: number
+    title: string;
+    author: string;
+    url: string;
+    img: string;
+    service: string;
+    week: number;
     /**웹툰 추가 정보
      * @new 신규
      * @rest 휴재
@@ -21,22 +21,18 @@ declare namespace Webtoon {
      * @adult 성인작품
      */
     additional: {
-      new: boolean
-      rest: boolean
-      up: boolean
-      adult: boolean
-    }
+      new: boolean;
+      rest: boolean;
+      up: boolean;
+      adult: boolean;
+    };
   }
-  type SetState =
-    | React.Dispatch<React.SetStateAction<undefined>>
-    | React.Dispatch<React.SetStateAction<Data[]>>
+  type SetState = React.Dispatch<React.SetStateAction<Data[]>>;
 
-  type State = undefined | Data[]
+  type State = Data[];
 
-  type context =
-    | {
-        data: State
-        setData: SetState
-      }
-    | undefined
+  type context = {
+    data: State;
+    setData: SetState;
+  };
 }

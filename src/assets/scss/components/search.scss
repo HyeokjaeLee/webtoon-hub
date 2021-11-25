@@ -1,0 +1,97 @@
+@import "../libs";
+.search-collapse {
+  position: absolute;
+  background-color: $LIGHT;
+  width: 100%;
+  z-index: 5;
+  border-bottom-left-radius: 30px;
+  border-bottom-right-radius: 30px;
+  box-shadow: $BOX_SHADOW;
+}
+
+.close-button {
+  > svg {
+    fill: $DARK;
+    width: 1em;
+    height: 1em;
+  }
+}
+
+.search-nav {
+  display: flex;
+  flex-direction: row;
+  gap: 1em;
+  padding: 0.8em;
+  font-size: 1.2em;
+}
+
+.search-result {
+  min-height: 80vh;
+  padding: 0.8em;
+  transition: height 0.3s;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  > ul {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 30em;
+    padding: 0;
+    margin: 0;
+    gap: 0.5em;
+    > li {
+    }
+  }
+}
+
+.search-input-wrap {
+  display: flex;
+  flex: 1;
+  justify-content: center;
+  align-items: center;
+  padding: 0.5em;
+}
+.search-input {
+  background-color: $SUB_TEXT;
+  border: none;
+  width: 100%;
+  border-radius: 500px;
+  max-width: 30em;
+  padding: 0.5em 1.5em;
+  &:focus {
+    outline: none;
+  }
+}
+
+.title-link-wrap {
+  > span {
+    background-color: $DARK;
+  }
+}
+
+.title-link {
+  color: $DARK;
+  text-decoration: none;
+  cursor: pointer;
+  background-color: $LIGHT;
+  padding: 0 0.3em;
+  transition: margin-left 0.2s;
+  &:visited,
+  &:active,
+  &:hover {
+    color: $DARK;
+  }
+  @include hover {
+    margin-left: 0.3em;
+  }
+  > .author {
+    color: $LIGHT;
+    background-color: $DARK;
+    font-weight: bold;
+    font-size: 0.7em;
+    margin-left: 0.5em;
+    padding: 0.2em 0.5em;
+    border-radius: $BORDER_RADIUS;
+  }
+}
