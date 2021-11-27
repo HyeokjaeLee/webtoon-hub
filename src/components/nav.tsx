@@ -7,8 +7,9 @@ import { ReactComponent as SearchIcon } from "assets/img/search.svg";
 import { ReactComponent as AllWebtoon } from "assets/img/all-webtoon.svg";
 import Search from "components/search";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
-function PlatformButton(prop: {
+function PlatformLink(prop: {
   icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
   platform: string;
   setState: React.Dispatch<React.SetStateAction<JSX.Element>>;
@@ -16,13 +17,16 @@ function PlatformButton(prop: {
   const { icon, platform, setState } = prop;
   const Icon = icon;
   return (
-    <button
-      className="platform-button"
-      onClick={() => setState(<Icon className="platform-icon" />)}
-    >
-      <Icon className="platform-icon" />
-      {platform}
-    </button>
+    <li>
+      <Link
+        to={`/${platform.toLocaleLowerCase().replace(" ", "-")}`}
+        className="platform-link"
+        onClick={() => setState(<Icon className="platform-icon" />)}
+      >
+        <Icon className="platform-icon" />
+        {platform}
+      </Link>
+    </li>
   );
 }
 
@@ -33,61 +37,81 @@ export default () => {
     <AllWebtoon className="platform-icon" />
   );
   return (
-    <div className="nav-wrap">
+    <>
       <Search isOpen={isSearchOpen} setIsOpen={setIsSearchOpen} />
-      <Navbar className="navbar" light>
-        <NavbarBrand className="me-auto" href="./">
-          WEBTOONHUB
-        </NavbarBrand>
-        <button
-          className="nav-button"
-          onClick={() => {
-            setIsSearchOpen(!isSearchOpen);
-          }}
-        >
-          <SearchIcon className="search-icon" />
-        </button>
-        <button
-          className="nav-button"
-          onClick={() => {
-            setIsPlatformOpen(!isPlatformOpen);
-          }}
-        >
-          <div className="selected-platform">{selectedPlatform}</div>
-          <Collapse isOpen={isPlatformOpen} className="platform-collapse">
-            <ul className="platform-list">
-              <li>
-                <PlatformButton
+      <div className="nav-container">
+        <Navbar className="navbar" light>
+          <NavbarBrand className="me-auto" href="./">
+            WEBTOON HUB
+          </NavbarBrand>
+          <button
+            className="nav-button"
+            onClick={() => {
+              setIsSearchOpen(!isSearchOpen);
+            }}
+          >
+            <SearchIcon className="search-icon" />
+          </button>
+          <button
+            className="nav-button"
+            onClick={() => {
+              setIsPlatformOpen(!isPlatformOpen);
+            }}
+          >
+            <div className="selected-platform">{selectedPlatform}</div>
+            <Collapse isOpen={isPlatformOpen} className="platform-collapse">
+              <ul className="platform-list">
+                <PlatformLink
                   icon={AllWebtoon}
                   setState={setSelectedPlatform}
                   platform="All platforms"
                 />
-              </li>
-              <li>
-                <PlatformButton
+                <PlatformLink
                   icon={NaverWebtoon}
                   setState={setSelectedPlatform}
                   platform="Naver Webtoon"
                 />
-              </li>
-              <li>
-                <PlatformButton
+                <PlatformLink
                   icon={KakaoWebtoon}
                   setState={setSelectedPlatform}
                   platform="Kakao Webtoon"
                 />
-              </li>
-              <li>
-                <PlatformButton
+                <PlatformLink
                   icon={KakaoPage}
                   setState={setSelectedPlatform}
                   platform="Kakao Page"
                 />
-              </li>
-            </ul>
-          </Collapse>
-        </button>
-      </Navbar>
-    </div>
+              </ul>
+            </Collapse>
+          </button>
+        </Navbar>
+        <ul className="week-list">
+          <li>
+            <Link to="?week=mon">월</Link>
+          </li>
+          <li>
+            <Link to="?week=tue">화</Link>
+          </li>
+          <li>
+            <Link to="?week=wed">수</Link>
+          </li>
+          <li>
+            <Link to="?week=thu">목</Link>
+          </li>
+          <li>
+            <Link to="?week=fri">금</Link>
+          </li>
+          <li>
+            <Link to="?week=sat">토</Link>
+          </li>
+          <li>
+            <Link to="?week=sun">일</Link>
+          </li>
+          <li>
+            <Link to="?week=fin">완결</Link>
+          </li>
+        </ul>
+      </div>
+    </>
   );
 };

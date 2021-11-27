@@ -10,7 +10,9 @@
 .search-collapse {
   background-color: $LIGHT;
 }
-
+.me-auto {
+  font-weight: 400;
+}
 .platform-list {
   list-style: none;
   padding: 0;
@@ -19,24 +21,17 @@
   padding: 1.5em;
   gap: 1em;
   margin: 0;
-  > li {
-    > a {
-      font-size: 1.2em;
-      display: flex;
-      gap: 0.5em;
-    }
-  }
 }
 
 .platform-icon {
   border-radius: 50%;
-  border: 4px solid $SUB_TEXT;
-  width: 1.5em;
-  height: 1.5em;
+  width: 1.8em;
+  height: 1.8em;
+  border: 4px solid $DARK;
 }
 
 .selected-platform {
-  font-size: 1.4em;
+  font-size: 1.15em;
 }
 
 .search-icon {
@@ -46,15 +41,56 @@
 }
 
 .navbar {
-  border-bottom: 4px solid $SUB_TEXT;
+  width: 100%;
+  max-width: 40em;
 }
 
 .nav-button {
   margin: 0 0.8em;
 }
 
-.platform-button {
-  font-size: 1.2em;
+.platform-link {
   display: flex;
   gap: 0.5em;
+  border-radius: $BORDER_RADIUS;
+  transition: color 0.2s, background-color 0.2s;
+  padding-right: 1em;
+  align-items: center;
+  @include remove-a-tag-style($DARK);
+  @include hover {
+    color: $LIGHT;
+    background-color: $DARK;
+  }
+}
+
+.nav-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid $LINE;
+  background-color: $LIGHT;
+  gap: 1em;
+  border-bottom-left-radius: $BORDER_RADIUS;
+  border-bottom-right-radius: $BORDER_RADIUS;
+}
+
+.week-list {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  max-width: 40em;
+  padding: 0 0.5em;
+  margin: 0;
+  > li {
+    flex: 1;
+    text-align: center;
+    > a {
+      display: block;
+      font-weight: 500;
+      @include remove-a-tag-style($SUB_TEXT);
+      font-size: 1.2em;
+      padding-bottom: 10px;
+    }
+  }
 }

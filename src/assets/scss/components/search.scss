@@ -52,8 +52,7 @@
   padding: 0.5em;
 }
 .search-input {
-  background-color: $SUB_TEXT;
-  border: none;
+  border: $DARK 2px solid;
   width: 100%;
   border-radius: 500px;
   max-width: 30em;
