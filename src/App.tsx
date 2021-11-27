@@ -12,10 +12,10 @@ function App() {
       <Nav />
       <Routes>
         <Route path="/" element={<WebtoonPage platform={"all"} />} />
-        <Route path="/all-platforms" element={<WebtoonPage platform={"naver-webtoon"} />} />
-        <Route path="/naver-webtoon" element={<WebtoonPage platform={"naver-webtoon"} />} />
-        <Route path="/kakao-webtoon" element={<WebtoonPage platform={"kakao-webtoon"} />} />
-        <Route path="/kakao-page" element={<WebtoonPage platform={"kakao-page"} />} />
+        <Route path="/all" element={<WebtoonPage platform={"all"} />} />
+        <Route path="/naver" element={<WebtoonPage platform={"naver"} />} />
+        <Route path="/kakao" element={<WebtoonPage platform={"kakao"} />} />
+        <Route path="/kakaoPage" element={<WebtoonPage platform={"kakao-page"} />} />
       </Routes>
     </>
   );

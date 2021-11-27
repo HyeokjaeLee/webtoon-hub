@@ -7,35 +7,80 @@ import { ReactComponent as SearchIcon } from "assets/img/search.svg";
 import { ReactComponent as AllWebtoon } from "assets/img/all-webtoon.svg";
 import Search from "components/search";
 import { useState } from "react";
-import { Link } from "react-router-dom";
-
-function PlatformLink(prop: {
-  icon: React.FunctionComponent<React.SVGProps<SVGSVGElement>>;
-  platform: string;
-  setState: React.Dispatch<React.SetStateAction<JSX.Element>>;
-}) {
-  const { icon, platform, setState } = prop;
-  const Icon = icon;
-  return (
-    <li>
-      <Link
-        to={`/${platform.toLocaleLowerCase().replace(" ", "-")}`}
-        className="platform-link"
-        onClick={() => setState(<Icon className="platform-icon" />)}
-      >
-        <Icon className="platform-icon" />
-        {platform}
-      </Link>
-    </li>
-  );
+import { Link, useLocation } from "react-router-dom";
+interface LinkOption {
+  icon: React.FunctionComponent<
+    React.SVGProps<SVGSVGElement> & {
+      title?: string | undefined;
+    }
+  >;
+  name: string;
+  src: string;
 }
 
 export default () => {
+  const { pathname, search } = useLocation();
+  const platformLinkOptions = {
+      all: {
+        icon: AllWebtoon,
+        name: "전체",
+        src: "/all",
+      },
+      naver: {
+        icon: NaverWebtoon,
+        name: "네이버 웹툰",
+        src: "/naver",
+      },
+      kakao: {
+        icon: KakaoWebtoon,
+        name: "카카오 웹툰",
+        src: "/kakao",
+      },
+      kakaoPage: {
+        icon: KakaoPage,
+        name: "카카오 페이지",
+        src: "/kakaoPage",
+      },
+    },
+    weekdayLinkOptions = [
+      { name: "월", src: "?week=mon" },
+      { name: "화", src: "?week=tue" },
+      { name: "수", src: "?week=wed" },
+      { name: "목", src: "?week=thu" },
+      { name: "금", src: "?week=fri" },
+      { name: "토", src: "?week=sat" },
+      { name: "일", src: "?week=sun" },
+      { name: "완결", src: "?week=fin" },
+    ];
+  const WeekList = weekdayLinkOptions.map((week, index) => {
+    const active = search === week.src ? "active" : "";
+    return (
+      <li>
+        <Link to={week.src} className={active}>
+          {week.name}
+        </Link>
+      </li>
+    );
+  });
+  const platform = pathname.split("/")[1] as keyof typeof platformLinkOptions;
+  const SelectedIcon = !platform
+    ? platformLinkOptions.all.icon
+    : platformLinkOptions[platform].icon;
   const [isPlatformOpen, setIsPlatformOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
-  const [selectedPlatform, setSelectedPlatform] = useState(
-    <AllWebtoon className="platform-icon" />
-  );
+  const PlatformLink = (props: { option: LinkOption }) => {
+    const { option } = props;
+    const { icon, name, src } = option;
+    const Icon = icon;
+    return (
+      <li>
+        <Link to={src} className="platform-link">
+          <Icon className="platform-icon" />
+          <p>{name}</p>
+        </Link>
+      </li>
+    );
+  };
   return (
     <>
       <Search isOpen={isSearchOpen} setIsOpen={setIsSearchOpen} />
@@ -58,59 +103,20 @@ export default () => {
               setIsPlatformOpen(!isPlatformOpen);
             }}
           >
-            <div className="selected-platform">{selectedPlatform}</div>
+            <div className="selected-platform">
+              <SelectedIcon className="platform-icon" />
+            </div>
             <Collapse isOpen={isPlatformOpen} className="platform-collapse">
               <ul className="platform-list">
-                <PlatformLink
-                  icon={AllWebtoon}
-                  setState={setSelectedPlatform}
-                  platform="All platforms"
-                />
-                <PlatformLink
-                  icon={NaverWebtoon}
-                  setState={setSelectedPlatform}
-                  platform="Naver Webtoon"
-                />
-                <PlatformLink
-                  icon={KakaoWebtoon}
-                  setState={setSelectedPlatform}
-                  platform="Kakao Webtoon"
-                />
-                <PlatformLink
-                  icon={KakaoPage}
-                  setState={setSelectedPlatform}
-                  platform="Kakao Page"
-                />
+                <PlatformLink option={platformLinkOptions.all} />
+                <PlatformLink option={platformLinkOptions.naver} />
+                <PlatformLink option={platformLinkOptions.kakao} />
+                <PlatformLink option={platformLinkOptions.kakaoPage} />
               </ul>
             </Collapse>
           </button>
         </Navbar>
-        <ul className="week-list">
-          <li>
-            <Link to="?week=mon">월</Link>
-          </li>
-          <li>
-            <Link to="?week=tue">화</Link>
-          </li>
-          <li>
-            <Link to="?week=wed">수</Link>
-          </li>
-          <li>
-            <Link to="?week=thu">목</Link>
-          </li>
-          <li>
-            <Link to="?week=fri">금</Link>
-          </li>
-          <li>
-            <Link to="?week=sat">토</Link>
-          </li>
-          <li>
-            <Link to="?week=sun">일</Link>
-          </li>
-          <li>
-            <Link to="?week=fin">완결</Link>
-          </li>
-        </ul>
+        <ul className="week-list">{WeekList}</ul>
       </div>
     </>
   );

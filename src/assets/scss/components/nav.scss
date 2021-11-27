@@ -61,6 +61,10 @@
     color: $LIGHT;
     background-color: $DARK;
   }
+  > p {
+    flex: 1;
+    margin: 0;
+  }
 }
 
 .nav-container {
@@ -86,6 +90,10 @@
     flex: 1;
     text-align: center;
     > a {
+      &.active {
+        color: $DARK;
+        border-bottom: 4px solid $DARK;
+      }
       display: block;
       font-weight: 500;
       @include remove-a-tag-style($SUB_TEXT);
