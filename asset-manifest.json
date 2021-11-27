@@ -1,31 +1,32 @@
 {
   "files": {
-    "main.css": "/webtoon-hub/static/css/main.f1c1780b.chunk.css",
-    "main.js": "/webtoon-hub/static/js/main.93f48dc4.chunk.js",
-    "main.js.map": "/webtoon-hub/static/js/main.93f48dc4.chunk.js.map",
-    "runtime-main.js": "/webtoon-hub/static/js/runtime-main.16cdc14d.js",
-    "runtime-main.js.map": "/webtoon-hub/static/js/runtime-main.16cdc14d.js.map",
+    "main.css": "/webtoon-hub/static/css/main.9d1795ea.chunk.css",
+    "main.js": "/webtoon-hub/static/js/main.17c64c06.chunk.js",
+    "main.js.map": "/webtoon-hub/static/js/main.17c64c06.chunk.js.map",
+    "runtime-main.js": "/webtoon-hub/static/js/runtime-main.1e974d6f.js",
+    "runtime-main.js.map": "/webtoon-hub/static/js/runtime-main.1e974d6f.js.map",
     "static/css/2.383c0125.chunk.css": "/webtoon-hub/static/css/2.383c0125.chunk.css",
-    "static/js/2.733d9cf6.chunk.js": "/webtoon-hub/static/js/2.733d9cf6.chunk.js",
-    "static/js/2.733d9cf6.chunk.js.map": "/webtoon-hub/static/js/2.733d9cf6.chunk.js.map",
-    "static/js/3.929771a6.chunk.js": "/webtoon-hub/static/js/3.929771a6.chunk.js",
-    "static/js/3.929771a6.chunk.js.map": "/webtoon-hub/static/js/3.929771a6.chunk.js.map",
+    "static/js/2.68aa803e.chunk.js": "/webtoon-hub/static/js/2.68aa803e.chunk.js",
+    "static/js/2.68aa803e.chunk.js.map": "/webtoon-hub/static/js/2.68aa803e.chunk.js.map",
+    "static/js/3.8aa16148.chunk.js": "/webtoon-hub/static/js/3.8aa16148.chunk.js",
+    "static/js/3.8aa16148.chunk.js.map": "/webtoon-hub/static/js/3.8aa16148.chunk.js.map",
     "index.html": "/webtoon-hub/index.html",
     "static/css/2.383c0125.chunk.css.map": "/webtoon-hub/static/css/2.383c0125.chunk.css.map",
-    "static/css/main.f1c1780b.chunk.css.map": "/webtoon-hub/static/css/main.f1c1780b.chunk.css.map",
-    "static/js/2.733d9cf6.chunk.js.LICENSE.txt": "/webtoon-hub/static/js/2.733d9cf6.chunk.js.LICENSE.txt",
-    "static/media/all-webtoon.eb68202a.svg": "/webtoon-hub/static/media/all-webtoon.eb68202a.svg",
+    "static/css/main.9d1795ea.chunk.css.map": "/webtoon-hub/static/css/main.9d1795ea.chunk.css.map",
+    "static/js/2.68aa803e.chunk.js.LICENSE.txt": "/webtoon-hub/static/js/2.68aa803e.chunk.js.LICENSE.txt",
+    "static/media/all-webtoon.272e38f0.svg": "/webtoon-hub/static/media/all-webtoon.272e38f0.svg",
     "static/media/close.b09cdeba.svg": "/webtoon-hub/static/media/close.b09cdeba.svg",
     "static/media/kakao-page.fefb88f8.svg": "/webtoon-hub/static/media/kakao-page.fefb88f8.svg",
     "static/media/kakao-webtoon.57ac81f5.svg": "/webtoon-hub/static/media/kakao-webtoon.57ac81f5.svg",
     "static/media/naver-webtoon.2ba49a50.svg": "/webtoon-hub/static/media/naver-webtoon.2ba49a50.svg",
+    "static/media/index.scss": "/webtoon-hub/static/media/noto-sans-kr-v13-korean-regular.038374b1.woff2",
     "static/media/search.339782b4.svg": "/webtoon-hub/static/media/search.339782b4.svg"
   },
   "entrypoints": [
-    "static/js/runtime-main.16cdc14d.js",
+    "static/js/runtime-main.1e974d6f.js",
     "static/css/2.383c0125.chunk.css",
-    "static/js/2.733d9cf6.chunk.js",
-    "static/css/main.f1c1780b.chunk.css",
-    "static/js/main.93f48dc4.chunk.js"
+    "static/js/2.68aa803e.chunk.js",
+    "static/css/main.9d1795ea.chunk.css",
+    "static/js/main.17c64c06.chunk.js"
   ]
 }
