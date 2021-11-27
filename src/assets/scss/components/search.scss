@@ -57,6 +57,7 @@
   width: 100%;
   border-radius: 500px;
   max-width: 30em;
+  font-size: 0.9em;
   padding: 0.5em 1.5em;
   &:focus {
     outline: none;
@@ -115,5 +116,10 @@
   flex-wrap: wrap;
   justify-content: center;
   padding: 0;
-  max-width: 30em;
+  max-width: 40em;
+}
+
+.search-loading {
+  display: flex;
+  justify-content: center;
 }

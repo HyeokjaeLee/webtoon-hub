@@ -36,7 +36,7 @@ export default () => {
     <div className="nav-wrap">
       <Search isOpen={isSearchOpen} setIsOpen={setIsSearchOpen} />
       <Navbar className="navbar" light>
-        <NavbarBrand className="me-auto" href="/">
+        <NavbarBrand className="me-auto" href="./">
           WEBTOONHUB
         </NavbarBrand>
         <button

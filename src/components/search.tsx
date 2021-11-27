@@ -26,50 +26,54 @@ export default function Search(props: { isOpen: boolean; setIsOpen: Function }) 
   const [matchKeywordDisplay, setMatchKeywordDisplay] = useState(hide);
   const { isOpen, setIsOpen } = props;
   const [titleList, setTitleList] = useState(EMPTY_ELEMENT);
+  const SearchLoading = [
+    <li className="search-loading">
+      <Spinner />
+    </li>,
+  ];
   let waitKeyword: string;
+  const if_data_exist = (data: Webtoon.Data[], result: JSX.Element[]) =>
+    data.length > 0 ? result : [<li>검색 결과가 없습니다.</li>];
 
   useEffect(() => {
     (async () => {
       if (searchWord.length > 1) {
-        setTitleList([
-          <li>
-            <Spinner />
-          </li>,
-        ]);
+        setTitleList(SearchLoading);
         const { data }: { data: Webtoon.Data[] } = await axios.get(
           `https://korea-webtoon-api.herokuapp.com/?search=${searchWord}`
         );
-        const searchedElement =
-          data.length > 0
-            ? data.map((webtoon) => (
-                <li className="searched-item-wrap">
-                  <article className="searched-item">
-                    <a
-                      className="searched-title"
-                      onClick={() => {
-                        setTempSearchKeyword(webtoon.title);
-                        setSearchWord(webtoon.title);
-                        setMatchKeywordDisplay(hide);
-                        setFinalWord(webtoon.title);
-                      }}
-                    >
-                      {webtoon.title}
-                    </a>
-                    <a
-                      className="searched-author"
-                      onClick={() => {
-                        setTempSearchKeyword(webtoon.author);
-                        setSearchWord(webtoon.author);
-                        setMatchKeywordDisplay(hide);
-                        setFinalWord(webtoon.author);
-                      }}
-                    >
-                      {webtoon.author}
-                    </a>
-                  </article>
-                </li>
-              ))
-            : [<li>검색 결과가 없습니다.</li>];
+        const searchedElement = if_data_exist(
+          data,
+          data.map((webtoon) => (
+            <li className="searched-item-wrap">
+              <article className="searched-item">
+                <a
+                  className="searched-title"
+                  onClick={() => {
+                    setTempSearchKeyword(webtoon.title);
+                    setSearchWord(webtoon.title);
+                    setMatchKeywordDisplay(hide);
+                    setFinalWord(webtoon.title);
+                  }}
+                >
+                  {webtoon.title}
+                </a>
+                <a
+                  className="searched-author"
+                  onClick={() => {
+                    setTempSearchKeyword(webtoon.author);
+                    setSearchWord(webtoon.author);
+                    setMatchKeywordDisplay(hide);
+                    setFinalWord(webtoon.author);
+                  }}
+                >
+                  {webtoon.author}
+                </a>
+              </article>
+            </li>
+          ))
+        );
+
         if (searchWord.length > 0) {
           setTitleList(searchedElement);
         }
@@ -80,12 +84,16 @@ export default function Search(props: { isOpen: boolean; setIsOpen: Function }) 
   }, [searchWord]);
 
   useEffect(() => {
+    setFinalWebtoon(SearchLoading);
     !!finalWord &&
       (async () => {
         const { data }: { data: Webtoon.Data[] } = await axios.get(
           `https://korea-webtoon-api.herokuapp.com/?search=${finalWord}`
         );
-        const finalWebtoonElement = data.map((webtoon) => <Webtoon webtoonData={webtoon} />);
+        const finalWebtoonElement = if_data_exist(
+          data,
+          data.map((webtoon) => <Webtoon webtoonData={webtoon} />)
+        );
         setFinalWebtoon(finalWebtoonElement);
       })();
   }, [finalWord]);
@@ -99,6 +107,8 @@ export default function Search(props: { isOpen: boolean; setIsOpen: Function }) 
             onClick={() => {
               setIsOpen(!isOpen);
               setSearchWord("");
+              setTempSearchKeyword("");
+              setFinalWebtoon(EMPTY_ELEMENT);
             }}
           >
             <Close />

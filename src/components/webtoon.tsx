@@ -9,7 +9,7 @@ export default function Webtoon(props: { webtoonData: Webtoon.Data }) {
     service === "naver" ? <NaverWebtoon /> : service === "kakao" ? <KakaoWebtoon /> : <KakaoPage />;
   return (
     <li className="webtoon">
-      <a href={webtoonData.url} className="webtoon-link">
+      <a href={webtoonData.url} className="webtoon-link" target="_blank">
         {ServiceLogo}
         <img src={webtoonData.img} className="thumbnail" />
         <div className="info-wrap">
