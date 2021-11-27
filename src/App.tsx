@@ -11,11 +11,11 @@ function App() {
     <>
       <Nav />
       <Routes>
-        <Route path="/" element={<WebtoonPage platform={"all"} />} />
-        <Route path="/all" element={<WebtoonPage platform={"all"} />} />
-        <Route path="/naver" element={<WebtoonPage platform={"naver"} />} />
-        <Route path="/kakao" element={<WebtoonPage platform={"kakao"} />} />
-        <Route path="/kakaoPage" element={<WebtoonPage platform={"kakao-page"} />} />
+        <Route path="/" element={<WebtoonPage />} />
+        <Route path="/all" element={<WebtoonPage />} />
+        <Route path="/naver" element={<WebtoonPage />} />
+        <Route path="/kakao" element={<WebtoonPage />} />
+        <Route path="/kakaoPage" element={<WebtoonPage />} />
       </Routes>
     </>
   );

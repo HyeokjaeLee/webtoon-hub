@@ -17,7 +17,9 @@ interface LinkOption {
   name: string;
   src: string;
 }
-
+const todayWeekNum = new Date().getDay();
+const week = ["일", "월", "화", "수", "목", "금", "토"];
+const todayWeek = week[todayWeekNum];
 export default () => {
   const { pathname, search } = useLocation();
   const platformLinkOptions = {
@@ -52,8 +54,11 @@ export default () => {
       { name: "일", src: "?week=sun" },
       { name: "완결", src: "?week=fin" },
     ];
-  const WeekList = weekdayLinkOptions.map((week, index) => {
-    const active = search === week.src ? "active" : "";
+  const WeekList = weekdayLinkOptions.map((week) => {
+    let active = "";
+    !search
+      ? week.name === todayWeek && (active = "active")
+      : search === week.src && (active = "active");
     return (
       <li>
         <Link to={week.src} className={active}>
@@ -66,6 +71,7 @@ export default () => {
   const SelectedIcon = !platform
     ? platformLinkOptions.all.icon
     : platformLinkOptions[platform].icon;
+
   const [isPlatformOpen, setIsPlatformOpen] = useState(false);
   const [isSearchOpen, setIsSearchOpen] = useState(false);
   const PlatformLink = (props: { option: LinkOption }) => {
