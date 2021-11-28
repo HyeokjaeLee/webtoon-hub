@@ -1,40 +1,98 @@
-import {
-  Navbar,
-  NavbarBrand,
-  NavbarToggler,
-  Collapse,
-  Nav,
-  NavItem,
-  NavLink,
-  Spinner,
-} from "reactstrap";
+import { Collapse, Spinner } from "reactstrap";
 import { ReactComponent as Close } from "assets/img/close.svg";
-import { WebtoonData } from "contexts/webtoon-data";
 import "assets/scss/components/search.scss";
 import axios from "axios";
-import { useContext, useEffect, useState, Dispatch, SetStateAction } from "react";
+import { useEffect, useState } from "react";
 import Webtoon from "./webtoon";
+import { useInView } from "react-intersection-observer";
 const show = {},
   hide: {} | { display: "none" } = { display: "none" };
 
 export default function Search(props: { isOpen: boolean; setIsOpen: Function }) {
-  const EMPTY_ELEMENT = [<></>];
-  const NO_WEBTOON_FOUND = [<li>검색 결과가 없습니다.</li>];
-  const [tempSearchKeyword, setTempSearchKeyword] = useState("");
-  const [searchWord, setSearchWord] = useState("");
-  const [finalWord, setFinalWord] = useState("");
-  const [finalWebtoon, setFinalWebtoon] = useState(EMPTY_ELEMENT);
-  const [matchKeywordDisplay, setMatchKeywordDisplay] = useState(hide);
   const { isOpen, setIsOpen } = props;
-  const [titleList, setTitleList] = useState(EMPTY_ELEMENT);
-  const SearchLoading = [
+  const [inputValue, setInputValue] = useState("");
+  const [searchValue, setSearchValue] = useState("");
+  const [webtoonData, setWebtoonData] = useState<Webtoon.Data[]>([]);
+  const EMPTY_ELEMENT = [<></>];
+  const EMPTY = [<></>];
+  const NO_WEBTOON_FOUND = [<li>검색 결과가 없습니다.</li>];
+  const LOADING = [
     <li className="search-loading">
       <Spinner />
     </li>,
   ];
-  let waitKeyword: string;
+  const [MatchingKeywordList, setMatchingKeywordList] = useState(EMPTY);
 
   useEffect(() => {
+    !!searchValue &&
+      (async () => {
+        setMatchingKeywordList(LOADING);
+        const { data }: { data: Webtoon.Data[] } = await axios.get(
+          `https://korea-webtoon-api.herokuapp.com/?search=${searchValue}`
+        );
+        if (Array.isArray(data)) {
+          setWebtoonData(data);
+          setMatchingKeywordList(
+            data.map((webtoon) => (
+              <li className="searched-item-wrap">
+                <article className="searched-item">
+                  <a className="searched-title" onClick={() => {}}>
+                    {webtoon.title}
+                  </a>
+                  <a className="searched-author" onClick={() => {}}>
+                    {webtoon.author}
+                  </a>
+                </article>
+              </li>
+            ))
+          );
+        } else {
+          setWebtoonData([]);
+          setMatchingKeywordList(NO_WEBTOON_FOUND);
+        }
+      })();
+  }, [searchValue]);
+
+  const [ref, inView] = useInView();
+
+  return (
+    <Collapse navbar isOpen={isOpen} className="search-collapse">
+      <article className="search-wrap">
+        <header className="search-header">
+          <button
+            className="close-button"
+            onClick={() => {
+              setIsOpen(!isOpen);
+            }}
+          >
+            <Close />
+          </button>
+          <div className="search-input-wrap">
+            <input
+              className="search-input"
+              placeholder="작품, 작가를 입력하세요"
+              value={inputValue}
+              onChange={(e) => {
+                setInputValue(e.target.value);
+                const tempKeyword = e.target.value;
+                setTimeout(() => {
+                  const keyword = e.target.value;
+                  keyword === tempKeyword && setSearchValue(keyword);
+                }, 500);
+              }}
+            />
+          </div>
+        </header>
+        <section className="search-contents">
+          <ul className="matching-keyword-list">{MatchingKeywordList}</ul>
+          <ul className="matching-webtoon-list"></ul>
+        </section>
+      </article>
+    </Collapse>
+  );
+}
+
+/**  useEffect(() => {
     (async () => {
       if (searchWord.length > 1) {
         setTitleList(SearchLoading);
@@ -82,9 +140,9 @@ export default function Search(props: { isOpen: boolean; setIsOpen: Function }) 
   }, [searchWord]);
 
   useEffect(() => {
-    setFinalWebtoon(SearchLoading);
     !!finalWord &&
       (async () => {
+        setFinalWebtoon(EMPTY_ELEMENT);
         const { data }: { data: Webtoon.Data[] } = await axios.get(
           `https://korea-webtoon-api.herokuapp.com/?search=${finalWord}`
         );
@@ -94,26 +152,10 @@ export default function Search(props: { isOpen: boolean; setIsOpen: Function }) 
         setFinalWebtoon(finalWebtoonElement);
       })();
   }, [finalWord]);
+ */
 
-  return (
-    <Collapse navbar isOpen={isOpen} className="search-collapse">
-      <article className="search-wrap">
-        <header className="search-header">
-          <div>
-            <button
-              className="close-button"
-              onClick={() => {
-                setIsOpen(!isOpen);
-                setSearchWord("");
-                setTempSearchKeyword("");
-                setFinalWebtoon(EMPTY_ELEMENT);
-              }}
-            >
-              <Close />
-            </button>
-          </div>
-          <div className="search-input-wrap">
-            <input
+/**
+   *             <input
               className="search-input"
               placeholder="작품, 작가를 입력하세요"
               onKeyPress={(e) => {
@@ -124,6 +166,8 @@ export default function Search(props: { isOpen: boolean; setIsOpen: Function }) 
               }}
               value={tempSearchKeyword}
               onChange={(e) => {
+                setFinalWebtoon(EMPTY_ELEMENT);
+                setTitleList(EMPTY_ELEMENT);
                 setMatchKeywordDisplay(show);
                 waitKeyword = e.target.value;
                 setTempSearchKeyword(e.target.value);
@@ -132,17 +176,4 @@ export default function Search(props: { isOpen: boolean; setIsOpen: Function }) 
                 }, 300);
               }}
             />
-          </div>
-        </header>
-        <section className="search-contents">
-          <ul className="match-keyword-list" style={matchKeywordDisplay}>
-            {titleList}
-          </ul>
-          <ul style={matchKeywordDisplay === hide ? show : hide} className="final-webtoon-list">
-            {finalWebtoon}
-          </ul>
-        </section>
-      </article>
-    </Collapse>
-  );
-}
+   */

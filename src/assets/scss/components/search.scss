@@ -42,7 +42,7 @@
   padding: 1em;
 }
 
-.match-keyword-list {
+.matching-keyword-list {
   display: flex;
   flex-direction: column;
   padding: 0;
@@ -115,7 +115,7 @@
   }
 }
 
-.final-webtoon-list {
+.matching-webtoon-list {
   padding: 0;
   display: flex;
   flex-wrap: wrap;
@@ -125,6 +125,7 @@
 .search-loading {
   display: flex;
   justify-content: center;
+  width: 100%;
 }
 
 .webtoon-list {
