@@ -15,3 +15,8 @@ main {
   justify-content: center;
   padding: 1em;
 }
+
+.webtoon-list {
+  display: flex;
+  flex-wrap: wrap;
+}
