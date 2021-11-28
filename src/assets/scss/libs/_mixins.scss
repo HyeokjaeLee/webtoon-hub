@@ -18,6 +18,23 @@
   }
 }
 
+@mixin remove-a-tag-style($color) {
+  text-decoration: none;
+  color: $color;
+  &:hover {
+    color: $color;
+  }
+  &:active {
+    color: $color;
+  }
+  &:focus {
+    color: $color;
+  }
+  &:visited {
+    color: $color;
+  }
+}
+
 @mixin if-small-device {
   @media (max-width: $mobileWidth) {
     @content;

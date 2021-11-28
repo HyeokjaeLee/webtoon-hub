@@ -1,11 +1,10 @@
 @import "../libs";
 .search-collapse {
   position: absolute;
+  top: 0;
   background-color: $LIGHT;
   width: 100%;
   z-index: 5;
-  border-bottom-left-radius: 30px;
-  border-bottom-right-radius: 30px;
   box-shadow: $BOX_SHADOW;
 }
 
@@ -17,32 +16,38 @@
   }
 }
 
-.search-nav {
+.search-wrap {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-header {
   display: flex;
   flex-direction: row;
   gap: 1em;
   padding: 0.8em;
   font-size: 1.2em;
+  border-bottom: 1px solid $LINE;
+  width: 100%;
 }
 
-.search-result {
-  min-height: 80vh;
-  padding: 0.8em;
-  transition: height 0.3s;
-  display: flex;
-  justify-content: center;
+.search-contents {
   margin: 0;
-  > ul {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    max-width: 30em;
-    padding: 0;
-    margin: 0;
-    gap: 0.5em;
-    > li {
-    }
-  }
+  width: 100%;
+  max-width: 40em;
+  flex: 1;
+  overflow: auto;
+  padding: 1em;
+}
+
+.match-keyword-list {
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+  margin: 0;
+  gap: 0.5em;
 }
 
 .search-input-wrap {
@@ -53,45 +58,72 @@
   padding: 0.5em;
 }
 .search-input {
-  background-color: $SUB_TEXT;
-  border: none;
+  border: $DARK 2px solid;
   width: 100%;
   border-radius: 500px;
   max-width: 30em;
+  font-size: 0.9em;
   padding: 0.5em 1.5em;
   &:focus {
     outline: none;
   }
 }
 
-.title-link-wrap {
-  > span {
-    background-color: $DARK;
+.searched-item-wrap {
+  background-color: $DARK;
+}
+
+.searched-item {
+  background-color: $LIGHT;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5em;
+  padding: 0 0.4em;
+  transition: margin-left 0.3s;
+  @include hover {
+    margin-left: 0.5em;
   }
 }
 
-.title-link {
-  color: $DARK;
-  text-decoration: none;
+.searched-title,
+.searched-author {
   cursor: pointer;
-  background-color: $LIGHT;
-  padding: 0 0.3em;
-  transition: margin-left 0.2s;
-  &:visited,
-  &:active,
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: block;
+}
+
+.searched-title {
+  color: $DARK;
   &:hover {
     color: $DARK;
   }
-  @include hover {
-    margin-left: 0.3em;
-  }
-  > .author {
+}
+
+.searched-author {
+  background-color: $DARK;
+  color: $LIGHT;
+  border-radius: $BORDER_RADIUS;
+  padding: 0.2em 0.4em;
+  font-size: 0.7em;
+  max-width: 15em;
+  &:hover {
     color: $LIGHT;
-    background-color: $DARK;
-    font-weight: bold;
-    font-size: 0.7em;
-    margin-left: 0.5em;
-    padding: 0.2em 0.5em;
-    border-radius: $BORDER_RADIUS;
   }
+}
+
+.final-webtoon-list {
+  padding: 0;
+}
+
+.search-loading {
+  display: flex;
+  justify-content: center;
+}
+
+.webtoon-list {
+  padding: 0;
 }

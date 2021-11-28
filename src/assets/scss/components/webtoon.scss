@@ -1,0 +1,58 @@
+@import "../libs";
+.webtoon-link {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  border-radius: $BORDER_RADIUS;
+  box-shadow: $BOX_SHADOW;
+  position: relative;
+  transition: box-shadow 0.3s ease-in-out;
+  @include hover {
+    box-shadow: $BOX_SHADOW_HOVER;
+  }
+  @include remove-a-tag-style($LIGHT);
+  > svg {
+    width: 1.5em;
+    height: 1.5em;
+    position: absolute;
+    border-radius: $BORDER_RADIUS;
+    margin: 0.4em;
+    box-shadow: $BOX_SHADOW;
+  }
+}
+
+.thumbnail {
+  flex: 1;
+  object-fit: cover;
+  border-top-left-radius: $BORDER_RADIUS;
+  border-top-right-radius: $BORDER_RADIUS;
+  background-color: darken($LIGHT, 5%);
+}
+
+.info-wrap {
+  background-color: $DARK;
+  padding: 0.5em;
+  border-bottom-left-radius: $BORDER_RADIUS;
+  border-bottom-right-radius: $BORDER_RADIUS;
+}
+
+.title {
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0;
+  font-size: 0.8em;
+}
+
+.webtoon {
+  padding: 0.5em;
+  width: 25%;
+  display: inline-block;
+  min-width: 8em;
+}
+@media (max-width: 615px) {
+  .webtoon {
+    width: 33.3%;
+  }
+}

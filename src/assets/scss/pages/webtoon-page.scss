@@ -1,0 +1,17 @@
+main {
+  display: flex;
+  flex-direction: column;
+  padding: 1em;
+  align-items: center;
+}
+
+.contents-container {
+  width: 100%;
+  max-width: 40em;
+}
+
+.week-list-wrap {
+  display: flex;
+  justify-content: center;
+  padding: 1em;
+}
