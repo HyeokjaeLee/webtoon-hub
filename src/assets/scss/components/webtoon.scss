@@ -1,58 +1,55 @@
 @import "../libs";
-.webtoon-link {
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  border-radius: $BORDER_RADIUS;
-  box-shadow: $BOX_SHADOW;
-  position: relative;
-  transition: box-shadow 0.3s ease-in-out;
-  @include hover {
-    box-shadow: $BOX_SHADOW_HOVER;
+
+.webtoon-link-wrap {
+  padding: 0.6em;
+  width: 25%;
+  @include if-small-device {
+    width: 33.3%;
   }
-  @include remove-a-tag-style($LIGHT);
-  > svg {
-    width: 1.5em;
-    height: 1.5em;
-    position: absolute;
+  > .webtoon-link {
+    display: flex;
+    flex-direction: column;
+    position: relative;
     border-radius: $BORDER_RADIUS;
-    margin: 0.4em;
-    box-shadow: $BOX_SHADOW;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease-in-out;
+    > svg {
+      position: absolute;
+      z-index: 2;
+      width: 1.5em;
+      height: 1.5em;
+      top: 0;
+      margin: 0.2em;
+      border-radius: $BORDER_RADIUS;
+    }
+    @include remove-a-tag-style($LIGHT);
+    @include hover {
+      box-shadow: $BOX_SHADOW_HOVER;
+    }
   }
-}
-
-.thumbnail {
-  flex: 1;
-  object-fit: cover;
-  border-top-left-radius: $BORDER_RADIUS;
-  border-top-right-radius: $BORDER_RADIUS;
-  background-color: darken($LIGHT, 5%);
-}
-
-.info-wrap {
-  background-color: $DARK;
-  padding: 0.5em;
-  border-bottom-left-radius: $BORDER_RADIUS;
-  border-bottom-right-radius: $BORDER_RADIUS;
 }
 
 .title {
-  width: 100%;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   margin: 0;
   font-size: 0.8em;
+  padding: 0.5em;
+  background-color: $DARK;
 }
 
-.webtoon {
-  padding: 0.5em;
-  width: 25%;
-  display: inline-block;
-  min-width: 8em;
-}
-@media (max-width: 615px) {
-  .webtoon {
-    width: 33.3%;
+.thumbnail-wrap {
+  width: 100%;
+  padding-bottom: 100%;
+  position: relative;
+  > .thumbnail {
+    background-color: $LIGHT;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 }
