@@ -75,8 +75,9 @@
   border-bottom: 1px solid $LINE;
   background-color: $LIGHT;
   gap: 1em;
-  border-bottom-left-radius: $BORDER_RADIUS;
-  border-bottom-right-radius: $BORDER_RADIUS;
+  z-index: 3;
+  position: sticky;
+  top: 0;
 }
 
 .week-list {

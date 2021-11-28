@@ -6,13 +6,8 @@ main {
 }
 
 .contents-container {
-  max-width: 40em;
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-items: center;
-  gap: 1em;
+  max-width: 40em;
 }
 
 .week-list-wrap {

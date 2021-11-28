@@ -22,11 +22,7 @@ export function WebtoonPage() {
       const PLATFORM_URL = API_URL + pathname;
       const WEEK_URL = query.week === "fin" ? "/finished" : "/week?day=" + query.week;
       const { data }: { data: Webtoon.Data[] } = await axios.get(PLATFORM_URL + WEEK_URL);
-      const WebtoonElementArr = data.map((webtoon) => (
-        <li>
-          <Webtoon webtoonData={webtoon} />
-        </li>
-      ));
+      const WebtoonElementArr = data.map((webtoon) => <Webtoon webtoonData={webtoon} />);
       setWebtoonState(WebtoonElementArr);
     })();
   }, [query.week, pathname]);
@@ -35,7 +31,9 @@ export function WebtoonPage() {
       <section className="contents-container">
         <RandomRecommend />
       </section>
-      <section className="contents-container">{WebtoonState}</section>
+      <section className="contents-container">
+        <ul className="webtoon-list">{WebtoonState}</ul>
+      </section>
     </main>
   );
 }

@@ -1,11 +1,10 @@
 @import "../libs";
 .search-collapse {
   position: absolute;
+  top: 0;
   background-color: $LIGHT;
   width: 100%;
   z-index: 5;
-  border-bottom-left-radius: 30px;
-  border-bottom-right-radius: 30px;
   box-shadow: $BOX_SHADOW;
 }
 
@@ -17,28 +16,35 @@
   }
 }
 
-.search-nav {
+.search-wrap {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.search-header {
   display: flex;
   flex-direction: row;
   gap: 1em;
   padding: 0.8em;
   font-size: 1.2em;
+  border-bottom: 1px solid $LINE;
+  width: 100%;
 }
 
-.search-result {
-  padding: 1em;
-  padding-bottom: 4em;
-  display: flex;
-  justify-content: center;
+.search-contents {
   margin: 0;
-  min-height: 2em;
+  width: 100%;
+  max-width: 40em;
+  flex: 1;
+  overflow: auto;
+  padding: 1em;
 }
 
 .match-keyword-list {
   display: flex;
   flex-direction: column;
-  width: 100%;
-  max-width: 30em;
   padding: 0;
   margin: 0;
   gap: 0.5em;
@@ -110,15 +116,14 @@
 }
 
 .final-webtoon-list {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
   padding: 0;
-  max-width: 40em;
 }
 
 .search-loading {
   display: flex;
   justify-content: center;
+}
+
+.webtoon-list {
+  padding: 0;
 }

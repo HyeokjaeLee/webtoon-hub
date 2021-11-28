@@ -89,8 +89,8 @@ export default () => {
   };
   return (
     <>
-      <Search isOpen={isSearchOpen} setIsOpen={setIsSearchOpen} />
       <div className="nav-container">
+        <Search isOpen={isSearchOpen} setIsOpen={setIsSearchOpen} />
         <Navbar className="navbar" light>
           <NavbarBrand className="me-auto" href="./">
             WEBTOON HUB
