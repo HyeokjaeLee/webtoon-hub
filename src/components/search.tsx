@@ -74,7 +74,9 @@ export default function Search(props: { isOpen: boolean; setIsOpen: Function }) 
   isMoreRefShow && part++;
   const More =
     visibleWebtoonCount < MatchingWebtoonList.length && 24 <= MatchingWebtoonList.length ? (
-      <li ref={moreRef}></li>
+      <li ref={moreRef} className="loading">
+        <Spinner />
+      </li>
     ) : (
       EMPTY
     );

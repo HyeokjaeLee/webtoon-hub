@@ -7,6 +7,7 @@ import axios from "axios";
 import qs from "qs";
 import { useEffect, useState } from "react";
 import { useInView } from "react-intersection-observer";
+import { Spinner } from "reactstrap";
 const API_URL = "https://korea-webtoon-api.herokuapp.com";
 const todayWeekNum = new Date().getDay();
 const week = ["sun", "mon", "tue", "wed", "thu", "fri", "sat"];
@@ -35,19 +36,16 @@ export function WebtoonPage() {
     })();
   }, [query.week, pathname]);
   const [moreRef, isMoreRefShow] = useInView();
-  console.log();
-  if (isMoreRefShow) {
-    part++;
-    console.log(part);
-  }
   isMoreRefShow && part++;
   const More =
     visibleWebtoonCount < WebtoonList.length && 24 < WebtoonList.length ? (
-      <li ref={moreRef}></li>
+      <li ref={moreRef} className="loading">
+        <Spinner />
+      </li>
     ) : (
       EMPTY
     );
-  const VisibleWebtoonList = WebtoonList.slice(0, visibleWebtoonCount);
+  const VisibleWebtoonList = WebtoonList.slice(0, part * 12);
   VisibleWebtoonList.push(More);
 
   return (
