@@ -22,8 +22,3 @@ function App() {
 }
 
 export default App;
-
-async function set_webtoon_data(setData: Webtoon.SetState) {
-  const res = await axios.get("https://korea-webtoon-api.herokuapp.com/all");
-  setData(res.data);
-}

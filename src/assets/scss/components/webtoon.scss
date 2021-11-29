@@ -3,6 +3,7 @@
 .webtoon-link-wrap {
   padding: 0.6em;
   width: 25%;
+  border: 0.5px solid $LINE;
   @include if-small-device {
     width: 33.3%;
   }
@@ -11,7 +12,6 @@
     flex-direction: column;
     position: relative;
     border-radius: $BORDER_RADIUS;
-    border: 0.5px solid $LINE;
     overflow: hidden;
     transition: box-shadow 0.3s ease-in-out;
     > svg {
@@ -52,5 +52,58 @@
     width: 100%;
     height: 100%;
     object-fit: cover;
+  }
+}
+
+.additional {
+  position: absolute;
+  z-index: 2;
+  top: 0;
+  right: 0;
+  display: flex;
+  margin: 0.2em;
+  gap: 0.5em;
+  > div {
+    box-sizing: border-box;
+    width: 1.5em;
+    height: 1.5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    border-radius: $BORDER_RADIUS;
+  }
+}
+
+.new {
+  background-color: #52bc1b;
+  > span {
+    font-weight: 500;
+    font-size: 0.5em;
+  }
+}
+
+.adult {
+  background-color: #ff0000;
+  > span {
+    font-weight: 900;
+    font-size: 0.8em;
+  }
+}
+
+.rest {
+  background-color: #7f8285;
+  > span {
+    font-weight: 500;
+    font-size: 0.5em;
+  }
+}
+
+.up {
+  background-color: #ffc600;
+  color: $DARK;
+  > span {
+    font-weight: 900;
+    font-size: 0.5em;
   }
 }

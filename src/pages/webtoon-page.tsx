@@ -1,6 +1,6 @@
 import "assets/scss/pages/webtoon-page.scss";
 import { useLocation } from "react-router-dom";
-import RandomRecommend from "components/random-recommend";
+
 import Webtoon from "components/webtoon";
 import Loading from "components/loading";
 import axios from "axios";
@@ -50,9 +50,7 @@ export function WebtoonPage() {
 
   return (
     <main>
-      <section className="contents-container">
-        <RandomRecommend />
-      </section>
+      <section className="contents-container"></section>
       <section className="contents-container">
         <ul className="webtoon-list">{VisibleWebtoonList}</ul>
       </section>
