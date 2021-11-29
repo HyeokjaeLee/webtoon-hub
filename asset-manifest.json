@@ -1,8 +1,8 @@
 {
   "files": {
     "main.css": "/webtoon-hub/static/css/main.8a7668bc.chunk.css",
-    "main.js": "/webtoon-hub/static/js/main.067a2103.chunk.js",
-    "main.js.map": "/webtoon-hub/static/js/main.067a2103.chunk.js.map",
+    "main.js": "/webtoon-hub/static/js/main.c0cd4e84.chunk.js",
+    "main.js.map": "/webtoon-hub/static/js/main.c0cd4e84.chunk.js.map",
     "runtime-main.js": "/webtoon-hub/static/js/runtime-main.547653f9.js",
     "runtime-main.js.map": "/webtoon-hub/static/js/runtime-main.547653f9.js.map",
     "static/css/2.383c0125.chunk.css": "/webtoon-hub/static/css/2.383c0125.chunk.css",
@@ -27,6 +27,6 @@
     "static/css/2.383c0125.chunk.css",
     "static/js/2.fb922123.chunk.js",
     "static/css/main.8a7668bc.chunk.css",
-    "static/js/main.067a2103.chunk.js"
+    "static/js/main.c0cd4e84.chunk.js"
   ]
 }
