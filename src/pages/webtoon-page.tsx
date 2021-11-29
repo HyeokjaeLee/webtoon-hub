@@ -26,7 +26,7 @@ export function WebtoonPage() {
     (async () => {
       setWebtoonList([<Loading />]);
       const PLATFORM_URL =
-        pathname === "/" ? "/all" : pathname === "/kakaPage" ? "/kakao-page" : pathname;
+        pathname === "/" ? "/all" : pathname === "/kakaoPage" ? "/kakao-page" : pathname;
       !query.week && (query.week = todayWeek);
       const WEEK_URL = query.week === "fin" ? "/finished" : "/week?day=" + query.week;
       const { data }: { data: Webtoon.Data[] } = await axios.get(API_URL + PLATFORM_URL + WEEK_URL);
