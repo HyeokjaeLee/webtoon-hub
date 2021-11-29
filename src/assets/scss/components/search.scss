@@ -9,6 +9,10 @@
 }
 
 .close-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.2em 0.5em;
   > svg {
     fill: $DARK;
     width: 1em;
@@ -24,9 +28,10 @@
 }
 
 .search-header {
+  position: relative;
   display: flex;
-  flex-direction: row;
-  gap: 1em;
+  align-items: center;
+  justify-content: center;
   padding: 0.8em;
   font-size: 1.2em;
   border-bottom: 1px solid $LINE;
@@ -50,13 +55,6 @@
   gap: 0.5em;
 }
 
-.search-input-wrap {
-  display: flex;
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  padding: 0.5em;
-}
 .search-input {
   border: $DARK 2px solid;
   width: 100%;
@@ -123,6 +121,7 @@
 }
 
 .search-loading {
+  margin-top: 10em;
   display: flex;
   justify-content: center;
   width: 100%;

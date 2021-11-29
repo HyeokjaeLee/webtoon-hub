@@ -97,7 +97,7 @@
     text-align: center;
     > a {
       display: block;
-      font-weight: 500;
+      font-weight: 400;
       @include remove-a-tag-style($SUB_TEXT);
       font-size: 1.2em;
       padding-bottom: 10px;

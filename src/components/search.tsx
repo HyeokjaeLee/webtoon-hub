@@ -5,56 +5,85 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import Webtoon from "./webtoon";
 import { useInView } from "react-intersection-observer";
-const show = {},
-  hide: {} | { display: "none" } = { display: "none" };
+let part = 1;
+const display = (value: boolean) => (value ? {} : { display: "none" });
+const EMPTY = [<></>];
+const NO_WEBTOON_FOUND = [<li>검색 결과가 없습니다.</li>];
+const LOADING = [
+  <li className="search-loading">
+    <Spinner />
+  </li>,
+];
 
 export default function Search(props: { isOpen: boolean; setIsOpen: Function }) {
   const { isOpen, setIsOpen } = props;
   const [inputValue, setInputValue] = useState("");
   const [searchValue, setSearchValue] = useState("");
+  const [matchingKeywordShow, setMatchingKeywordShow] = useState(true);
+
   const [webtoonData, setWebtoonData] = useState<Webtoon.Data[]>([]);
-  const EMPTY_ELEMENT = [<></>];
-  const EMPTY = [<></>];
-  const NO_WEBTOON_FOUND = [<li>검색 결과가 없습니다.</li>];
-  const LOADING = [
-    <li className="search-loading">
-      <Spinner />
-    </li>,
-  ];
+  const WEBTOON_COUNT_OF_PART = part * 12;
+  const WEBTOON_COUNT = webtoonData.length;
   const [MatchingKeywordList, setMatchingKeywordList] = useState(EMPTY);
+  const [MatchingWebtoonList, setMatchingWebtoonList] = useState(EMPTY);
 
   useEffect(() => {
-    !!searchValue &&
-      (async () => {
-        setMatchingKeywordList(LOADING);
-        const { data }: { data: Webtoon.Data[] } = await axios.get(
-          `https://korea-webtoon-api.herokuapp.com/?search=${searchValue}`
-        );
-        if (Array.isArray(data)) {
-          setWebtoonData(data);
-          setMatchingKeywordList(
-            data.map((webtoon) => (
-              <li className="searched-item-wrap">
-                <article className="searched-item">
-                  <a className="searched-title" onClick={() => {}}>
-                    {webtoon.title}
-                  </a>
-                  <a className="searched-author" onClick={() => {}}>
-                    {webtoon.author}
-                  </a>
-                </article>
-              </li>
-            ))
+    part = 1;
+    !!searchValue
+      ? (async () => {
+          //element 초기화
+          setMatchingWebtoonList(LOADING);
+          setMatchingKeywordList(LOADING);
+          const setMatchingWebtoon = (keyword: string) => {
+            setInputValue(keyword);
+            setSearchValue(keyword);
+            setMatchingKeywordShow(false);
+          };
+
+          const { data }: { data: Webtoon.Data[] } = await axios.get(
+            `https://korea-webtoon-api.herokuapp.com/?search=${searchValue}`
           );
-        } else {
-          setWebtoonData([]);
-          setMatchingKeywordList(NO_WEBTOON_FOUND);
-        }
-      })();
+          if (Array.isArray(data)) {
+            setWebtoonData(data);
+            setMatchingKeywordList(
+              data.map((webtoon) => (
+                <li className="searched-item-wrap">
+                  <article className="searched-item">
+                    <a
+                      className="searched-title"
+                      onClick={() => {
+                        setMatchingWebtoon(webtoon.title);
+                      }}
+                    >
+                      {webtoon.title}
+                    </a>
+                    <a
+                      className="searched-author"
+                      onClick={() => {
+                        setMatchingWebtoon(webtoon.author);
+                      }}
+                    >
+                      {webtoon.author}
+                    </a>
+                  </article>
+                </li>
+              ))
+            );
+            setMatchingWebtoonList(data.map((webtoon) => <Webtoon webtoonData={webtoon} />));
+          } else {
+            setWebtoonData([]);
+            setMatchingKeywordList(NO_WEBTOON_FOUND);
+            setMatchingWebtoonList(NO_WEBTOON_FOUND);
+          }
+        })()
+      : setMatchingKeywordList(EMPTY);
   }, [searchValue]);
 
-  const [ref, inView] = useInView();
-
+  const [moreRef, isMoreRefShow] = useInView();
+  isMoreRefShow && part++;
+  const More = WEBTOON_COUNT_OF_PART < WEBTOON_COUNT ? <li ref={moreRef}></li> : <></>;
+  const VisibleMatchingWebtoonList = MatchingWebtoonList.slice(0, part * 12);
+  VisibleMatchingWebtoonList.push(More);
   return (
     <Collapse navbar isOpen={isOpen} className="search-collapse">
       <article className="search-wrap">
@@ -67,25 +96,35 @@ export default function Search(props: { isOpen: boolean; setIsOpen: Function }) 
           >
             <Close />
           </button>
-          <div className="search-input-wrap">
-            <input
-              className="search-input"
-              placeholder="작품, 작가를 입력하세요"
-              value={inputValue}
-              onChange={(e) => {
-                setInputValue(e.target.value);
-                const tempKeyword = e.target.value;
-                setTimeout(() => {
-                  const keyword = e.target.value;
-                  keyword === tempKeyword && setSearchValue(keyword);
-                }, 500);
-              }}
-            />
-          </div>
+          <input
+            className="search-input"
+            placeholder="작품, 작가를 입력하세요"
+            value={inputValue}
+            onChange={(e) => {
+              setMatchingKeywordShow(true);
+              setInputValue(e.target.value);
+              const tempKeyword = e.target.value;
+              setTimeout(() => {
+                const keyword = e.target.value;
+                keyword === tempKeyword && setSearchValue(keyword);
+              }, 500);
+            }}
+            onKeyPress={(e) => {
+              if (e.key === "Enter" && !!inputValue) {
+                setSearchValue(inputValue);
+                setMatchingKeywordShow(false);
+              }
+            }}
+          />
         </header>
         <section className="search-contents">
-          <ul className="matching-keyword-list">{MatchingKeywordList}</ul>
-          <ul className="matching-webtoon-list"></ul>
+          <ul className="matching-keyword-list" style={display(matchingKeywordShow)}>
+            {MatchingKeywordList}
+          </ul>
+          <ul className="matching-webtoon-list" style={display(!matchingKeywordShow)}>
+            {MatchingWebtoonList.slice(0, part * 12)}
+            {More}
+          </ul>
         </section>
       </article>
     </Collapse>
