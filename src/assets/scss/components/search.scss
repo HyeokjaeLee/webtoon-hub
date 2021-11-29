@@ -9,6 +9,10 @@
 }
 
 .close-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 0.2em 0.5em;
   > svg {
     fill: $DARK;
     width: 1em;
@@ -24,10 +28,11 @@
 }
 
 .search-header {
+  position: relative;
   display: flex;
-  flex-direction: row;
-  gap: 1em;
-  padding: 0.8em;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8em 3em;
   font-size: 1.2em;
   border-bottom: 1px solid $LINE;
   width: 100%;
@@ -42,7 +47,7 @@
   padding: 1em;
 }
 
-.match-keyword-list {
+.matching-keyword-list {
   display: flex;
   flex-direction: column;
   padding: 0;
@@ -50,13 +55,6 @@
   gap: 0.5em;
 }
 
-.search-input-wrap {
-  display: flex;
-  flex: 1;
-  justify-content: center;
-  align-items: center;
-  padding: 0.5em;
-}
 .search-input {
   border: $DARK 2px solid;
   width: 100%;
@@ -115,18 +113,9 @@
   }
 }
 
-.final-webtoon-list {
+.matching-webtoon-list {
   padding: 0;
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-}
-
-.search-loading {
-  display: flex;
-  justify-content: center;
-}
-
-.webtoon-list {
-  padding: 0;
 }
