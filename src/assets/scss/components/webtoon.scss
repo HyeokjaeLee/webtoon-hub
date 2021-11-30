@@ -45,7 +45,7 @@
   padding-bottom: 100%;
   position: relative;
   > .thumbnail {
-    background-color: $LIGHT;
+    background-color: lighten($DARK, 10%);
     position: absolute;
     top: 0;
     left: 0;
