@@ -18,4 +18,6 @@ Heroku 서버가 Sleep 상태일 경우 첫 요청시 1분 가량 소요됩니�
 
 ## Preveiw [WEBTOON HUB](https://hyeokjaelee.github.io/webtoon-hub/)
 
-![image](https://user-images.githubusercontent.com/71566740/143968656-5e132b47-bdb7-4624-82e7-25d03b76321f.png)
+![image](https://user-images.githubusercontent.com/71566740/143975609-7cdd2c19-469e-417f-a6b8-aa7e3e2d2b69.png)
+![image](https://user-images.githubusercontent.com/71566740/143975454-de4bc3d4-96b7-4460-85df-a8eaf7a9661a.png)
+![image](https://user-images.githubusercontent.com/71566740/143975486-b9dd63f5-4a5a-43c0-9c26-54dcdb772bf4.png)
