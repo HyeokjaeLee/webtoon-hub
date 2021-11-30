@@ -1,6 +1,8 @@
 ![HEADER](https://capsule-render.vercel.app/api?type=rect&color=gradient&height=100&section=header&text=WEBTOON%20HUB&fontSize=30&fontAlign=50&fontAlignY=50)
 
+![NODE](https://img.shields.io/badge/Node.js-339933?style=flat-square&logo=Node.js&logoColor=white)&nbsp;&nbsp;&nbsp;
 ![React](https://img.shields.io/badge/React-61DAFB?style=flat-square&logo=react&logoColor=black)
+![TYPESCRIPT](https://img.shields.io/badge/Typescript-3178c6?style=flat-square&logo=typescript&logoColor=white)
 ![Sass](https://img.shields.io/badge/Sass-CC6699?style=flat-square&logo=sass&logoColor=white)
 ![Bootstrap](https://img.shields.io/badge/Bootstrap-7952B3?style=flat-square&logo=Bootstrap&logoColor=white)
 
@@ -14,7 +16,7 @@
 
 Toy Projects를 위한 API를 사용한 프로젝트입니다.
 
-Heroku 서버가 Sleep 상태일 경우 첫 요청시 1분 가량 소요됩니다.
+**Heroku 서버가 Sleep 상태일 경우 첫 요청시 1분 가량 소요됩니다.**
 
 ## Preveiw [WEBTOON HUB](https://hyeokjaelee.github.io/webtoon-hub/)
 
