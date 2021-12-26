@@ -19,41 +19,38 @@ interface LinkOption {
 }
 const todayWeekNum = new Date().getDay();
 const week = ["일", "월", "화", "수", "목", "금", "토"];
+const weekdayLinkOptions = week.map((weekday, weeknum) => ({
+  name: weekday,
+  src: `?week=${weeknum}`,
+}));
+weekdayLinkOptions.push({ name: "완결", src: "?week=fin" });
+const platformLinkOptions = {
+  all: {
+    icon: AllWebtoon,
+    name: "전체",
+    src: "/all",
+  },
+  naver: {
+    icon: NaverWebtoon,
+    name: "네이버 웹툰",
+    src: "/naver",
+  },
+  kakao: {
+    icon: KakaoWebtoon,
+    name: "카카오 웹툰",
+    src: "/kakao",
+  },
+  kakaoPage: {
+    icon: KakaoPage,
+    name: "카카오 페이지",
+    src: "/kakaoPage",
+  },
+};
 const todayWeek = week[todayWeekNum];
+
 export default () => {
   const { pathname, search } = useLocation();
-  const platformLinkOptions = {
-      all: {
-        icon: AllWebtoon,
-        name: "전체",
-        src: "/all",
-      },
-      naver: {
-        icon: NaverWebtoon,
-        name: "네이버 웹툰",
-        src: "/naver",
-      },
-      kakao: {
-        icon: KakaoWebtoon,
-        name: "카카오 웹툰",
-        src: "/kakao",
-      },
-      kakaoPage: {
-        icon: KakaoPage,
-        name: "카카오 페이지",
-        src: "/kakaoPage",
-      },
-    },
-    weekdayLinkOptions = [
-      { name: "월", src: "?week=mon" },
-      { name: "화", src: "?week=tue" },
-      { name: "수", src: "?week=wed" },
-      { name: "목", src: "?week=thu" },
-      { name: "금", src: "?week=fri" },
-      { name: "토", src: "?week=sat" },
-      { name: "일", src: "?week=sun" },
-      { name: "완결", src: "?week=fin" },
-    ];
+
   const WeekList = weekdayLinkOptions.map((week) => {
     let active = "";
     !search

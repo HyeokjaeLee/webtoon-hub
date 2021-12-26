@@ -34,7 +34,7 @@ export default function Search(props: { isOpen: boolean; setIsOpen: Function }) 
           };
 
           const { data }: { data: Webtoon.Data[] } = await axios.get(
-            `https://korea-webtoon-api.herokuapp.com/?search=${searchValue}`
+            `https://korea-webtoon-api.herokuapp.com/search?keyword=${searchValue}`
           );
           if (Array.isArray(data)) {
             setMatchingKeywordList(
