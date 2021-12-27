@@ -14,7 +14,6 @@ function PlatformLogo(props: { platform: string }) {
   );
 }
 
-const EMPTY = <></>;
 const Badge = (txt: string, className: string) => (
   <div className={className}>
     <span>{txt}</span>
