@@ -7,7 +7,7 @@ export const getWebtoonsByUpdateDay = async (
   updateDay?: string | null
 ): Promise<WebtoonsData | null> => {
   try {
-    const pageParam = `page=${page}`;
+    const pageParam = `perPage=12&page=${page}`;
     const updateDayParam = updateDay ? `updateDay=${updateDay}` : "";
     const { data } = await axios.get(
       `${API_URL}?${pageParam}&${updateDayParam}`

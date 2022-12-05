@@ -49,6 +49,5 @@ export interface WebtoonsData {
   updatedWebtoonCount: number;
   createdWebtoonCount: number;
   lastUpdate?: string;
-  isLastPage?: boolean;
   webtoons: Webtoon[];
 }

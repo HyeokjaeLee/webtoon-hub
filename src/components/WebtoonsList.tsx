@@ -1,6 +1,6 @@
 import { useLocation } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { WebtoonCard } from "./WebtoonCard";
+import { WebtoonCard } from "../components";
 import { getWebtoonsByUpdateDay } from "../utils";
 import type { Webtoon } from "../types";
 import { Spinner } from "reactstrap";
@@ -27,14 +27,19 @@ export const WebtoonsList = () => {
   useEffect(() => {
     setPage(-1);
     setWebtoons([]);
+    setIsLastPage(false);
   }, [updateDay]);
 
   useEffect(() => {
     (async () => {
+      if (isLastPage) return;
       const webtoonData = await getWebtoonsByUpdateDay(page, updateDay);
       if (!webtoonData) return;
-      setIsLastPage(webtoonData.isLastPage ?? false);
-      setWebtoons([...webtoons, ...webtoonData.webtoons]);
+      if (webtoonData.webtoons.length === 0) {
+        setIsLastPage(true);
+      } else {
+        setWebtoons([...webtoons, ...webtoonData.webtoons]);
+      }
       setIsLoading(false);
     })();
   }, [page]);
@@ -46,9 +51,11 @@ export const WebtoonsList = () => {
           <WebtoonCard {...webtoon} key={index} />
         ))}
       </ul>
-      <div className="loading" ref={moreRef}>
-        <Spinner />
-      </div>
+      {!isLastPage && (
+        <div className="loading" ref={moreRef}>
+          <Spinner />
+        </div>
+      )}
     </section>
   );
 };

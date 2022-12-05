@@ -1,0 +1,11 @@
+@import "../../scss/libs";
+
+.service-badge-wrap > svg {
+  position: absolute;
+  z-index: 2;
+  width: 1.2em;
+  height: 1.2em;
+  top: 0;
+  margin: 0.2em;
+  border-radius: $BORDER_RADIUS;
+}

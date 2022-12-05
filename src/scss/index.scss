@@ -1,0 +1,46 @@
+@import "/src/assets/fonts/font.css";
+@import "./libs";
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-height: 100vh;
+}
+html {
+  font-size: 18px;
+}
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: $BACKGROUND;
+  > main {
+    flex: 1;
+  }
+}
+* {
+  padding: 0;
+  margin: 0;
+  font-family: "NotoSans";
+}
+
+ul,
+li {
+  list-style: none;
+}
+
+button {
+  border: none;
+  background: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+.loading {
+  margin: 2em 0;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

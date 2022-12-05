@@ -1,0 +1,47 @@
+@import "../../scss/libs";
+
+.webtoon-card {
+  padding: 0.6em;
+  width: 25%;
+  border: 0.5px solid $LINE;
+  @include if-small-device {
+    width: 33.3%;
+  }
+  > .webtoon-link {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    border-radius: $BORDER_RADIUS;
+    overflow: hidden;
+    transition: box-shadow 0.3s ease-in-out;
+    @include remove-a-tag-style($LIGHT);
+    @include hover {
+      box-shadow: $BOX_SHADOW_HOVER;
+    }
+  }
+}
+
+.title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin: 0;
+  font-size: 0.7em;
+  padding: 0.5em 0.8em;
+  background-color: $DARK;
+}
+
+.thumbnail-wrap {
+  width: 100%;
+  padding-bottom: 100%;
+  position: relative;
+  > .thumbnail {
+    background-color: lighten($DARK, 10%);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
