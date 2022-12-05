@@ -1,13 +1,22 @@
-import { Navbar, NavbarBrand, NavbarToggler, Collapse, Nav, NavItem, NavLink } from "reactstrap";
+import {
+  Navbar,
+  NavbarBrand,
+  NavbarToggler,
+  Collapse,
+  Nav,
+  NavItem,
+} from "reactstrap";
+import { NavLink, Link } from "react-router-dom";
 import "assets/scss/components/nav.scss";
 import { ReactComponent as KakaoPage } from "assets/img/kakao-page.svg";
 import { ReactComponent as KakaoWebtoon } from "assets/img/kakao-webtoon.svg";
 import { ReactComponent as NaverWebtoon } from "assets/img/naver-webtoon.svg";
 import { ReactComponent as SearchIcon } from "assets/img/search.svg";
 import { ReactComponent as AllWebtoon } from "assets/img/all-webtoon.svg";
+
 import Search from "components/search";
-import { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 interface LinkOption {
   icon: React.FunctionComponent<
     React.SVGProps<SVGSVGElement> & {
@@ -49,21 +58,59 @@ const platformLinkOptions = {
 const todayWeek = week[todayWeekNum];
 
 export default () => {
+  const updateDayMapper = [
+    {
+      name: "월",
+      value: "mon",
+    },
+    {
+      name: "화",
+      value: "tue",
+    },
+    {
+      name: "수",
+      value: "wed",
+    },
+    {
+      name: "목",
+      value: "thu",
+    },
+    {
+      name: "금",
+      value: "fri",
+    },
+    {
+      name: "토",
+      value: "sat",
+    },
+    {
+      name: "일",
+      value: "sun",
+    },
+    {
+      name: "완결",
+      value: "finished",
+    },
+  ];
   const { pathname, search } = useLocation();
+  const searchParams = new URLSearchParams(search);
+  const updateDay = searchParams.get("updateDay");
 
-  const WeekList = weekdayLinkOptions.map((week) => {
-    let active = "";
-    !search
-      ? week.name === todayWeek && (active = "active")
-      : search === week.src && (active = "active");
-    return (
-      <li>
-        <Link to={week.src} className={active}>
-          {week.name}
-        </Link>
-      </li>
-    );
-  });
+  const isInvalidUpdateDay = !updateDayMapper.find(
+    ({ value }) => value === updateDay
+  );
+
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (isInvalidUpdateDay) {
+      navigate(
+        `?updateDay=${
+          ["sun", "mon", "tue", "wed", "thu", "fri", "sat"][new Date().getDay()]
+        }`
+      );
+    }
+  }, [isInvalidUpdateDay, navigate]);
+
   const platform = pathname.split("/")[1] as keyof typeof platformLinkOptions;
   const SelectedIcon = !platform
     ? platformLinkOptions.all.icon
@@ -84,6 +131,7 @@ export default () => {
       </li>
     );
   };
+
   return (
     <>
       <div className="nav-container">
@@ -119,7 +167,21 @@ export default () => {
             </Collapse>
           </button>
         </Navbar>
-        <ul className="week-list">{WeekList}</ul>
+        <ul className="week-list">
+          {updateDayMapper.map(({ name, value }) => {
+            const isActive = updateDay === value;
+            return (
+              <li>
+                <Link
+                  to={`?updateDay=${value}`}
+                  className={isActive ? "active" : ""}
+                >
+                  {name}
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
       </div>
     </>
   );

@@ -17,8 +17,8 @@
     > svg {
       position: absolute;
       z-index: 2;
-      width: 1.5em;
-      height: 1.5em;
+      width: 1.2em;
+      height: 1.2em;
       top: 0;
       margin: 0.2em;
       border-radius: $BORDER_RADIUS;
@@ -53,6 +53,21 @@
     height: 100%;
     object-fit: cover;
   }
+
+  > .fan-count {
+    z-index: 2;
+    position: absolute;
+    right: 0;
+    padding: 0 0.5em;
+    background-color: #ec449b;
+    margin-bottom: 0.5em;
+    bottom: 0;
+    font-weight: 700;
+    font-size: 0.5em;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+    color: white;
+  }
 }
 
 .additional {
@@ -65,8 +80,8 @@
   gap: 0.2em;
   > div {
     box-sizing: border-box;
-    width: 1.5em;
-    height: 1.5em;
+    width: 1.2em;
+    height: 1.2em;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -88,6 +103,7 @@
   > span {
     font-weight: 900;
     font-size: 0.8em;
+    margin-bottom: 0.15em;
   }
 }
 
@@ -104,6 +120,23 @@
   color: $DARK;
   > span {
     font-weight: 900;
+    font-size: 0.5em;
+  }
+}
+
+.over15 {
+  background-color: #ddc6b6;
+  > span {
+    font-weight: 900;
+    font-size: 0.8em;
+    color: #262223;
+    margin-bottom: 0.15em;
+  }
+}
+
+.wait-free {
+  background-color: #50586c;
+  > span {
     font-size: 0.5em;
   }
 }

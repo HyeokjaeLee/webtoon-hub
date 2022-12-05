@@ -1,0 +1,1 @@
+export { getWebtoonsByUpdateDay } from "./getWebtoonsByUpdateDay";

@@ -3,7 +3,6 @@ import { ReactComponent as Close } from "assets/img/close.svg";
 import "assets/scss/components/search.scss";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Webtoon from "./webtoon";
 import Loading from "./loading";
 import { useInView } from "react-intersection-observer";
 const display = (value: boolean) => (value ? {} : { display: "none" });
@@ -11,8 +10,12 @@ const EMPTY = <></>;
 const NO_WEBTOON_FOUND = [<li>검색 결과가 없습니다.</li>];
 let part = 2;
 
-export default function Search(props: { isOpen: boolean; setIsOpen: Function }) {
-  const { isOpen, setIsOpen } = props;
+export default function Search(props: {
+  isOpen: boolean;
+  setIsOpen: Function;
+}) {
+  /**
+ *   const { isOpen, setIsOpen } = props;
   const [inputValue, setInputValue] = useState("");
   const [searchValue, setSearchValue] = useState("");
   const [matchingKeywordShow, setMatchingKeywordShow] = useState(true);
@@ -126,4 +129,6 @@ export default function Search(props: { isOpen: boolean; setIsOpen: Function }) 
       </article>
     </Collapse>
   );
+ */
+  return <></>;
 }
