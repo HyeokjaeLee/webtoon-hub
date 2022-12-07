@@ -3,6 +3,7 @@
   "private": false,
   "homepage": "https://hyeokjaelee.github.io/webtoon-hub",
   "dependencies": {
+    "@fontsource/noto-sans-kr": "^4.5.12",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^14.4.3",

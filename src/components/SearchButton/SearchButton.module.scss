@@ -1,0 +1,20 @@
+.search-button {
+  width: 1.8em;
+  height: 1.8em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 100%;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: lighten(black, 20%);
+    > svg {
+      color: darken(white, 20%);
+    }
+  }
+  > svg {
+    transition: color 0.3s;
+    width: 1.1em;
+    height: 1.1em;
+  }
+}

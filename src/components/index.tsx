@@ -3,3 +3,7 @@ export { WebtoonCard } from "./WebtoonCard/WebtoonCard";
 export { ServiceBadge } from "./ServiceBadge/ServiceBadge";
 export { AddtionalInfoBadges } from "./AddtionalInfoBadges/AddtionalInfoBadges";
 export { FanCountBadge } from "./FanCountBadge/FanCountBadge";
+export { ServiceButton } from "./ServiceButton/ServiceButton";
+export { SearchButton } from "./SearchButton/SearchButton";
+export { UpdateDaysBar } from "./UpdateDaysBar/UpdateDaysBar";
+export { NavBar } from "./NavBar/NavBar";
