@@ -2,6 +2,7 @@
 
 .webtoon-card {
   padding: 0.6em;
+  box-sizing: border-box;
   width: 25%;
   border: 0.5px solid $LINE;
   @include if-small-device {

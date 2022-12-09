@@ -1,11 +1,13 @@
-@import "/src/assets/fonts/font.css";
 @import "./libs";
+
 body {
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   min-height: 100vh;
+  font-family: "Noto Sans KR";
 }
+
 html {
   font-size: 18px;
 }
@@ -21,7 +23,6 @@ html {
 * {
   padding: 0;
   margin: 0;
-  font-family: "NotoSans";
 }
 
 ul,

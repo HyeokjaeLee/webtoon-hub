@@ -67,17 +67,19 @@ export const UpdateDaysBar = () => {
   }, [pathname]);
 
   return (
-    <ul className={scss["update-day-bar"]}>
-      {updateDayList.map(({ name, value }) => (
-        <li className={scss["update-day-bar-item"]}>
-          <NavLink
-            to={`?updateDay=${value}`}
-            className={() => (value === updateDay ? scss.active : "")}
-          >
-            {name}
-          </NavLink>
-        </li>
-      ))}
-    </ul>
+    <div className={scss["update-day-bar-wrap"]}>
+      <ul className={scss["update-day-bar"]}>
+        {updateDayList.map(({ name, value }) => (
+          <li className={scss["update-day-bar-item"]}>
+            <NavLink
+              to={`?updateDay=${value}`}
+              className={() => (value === updateDay ? scss.active : "")}
+            >
+              {name}
+            </NavLink>
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 };

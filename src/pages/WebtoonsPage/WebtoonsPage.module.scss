@@ -1,0 +1,14 @@
+.contents-container {
+  width: 100%;
+  max-width: 40em;
+  padding: 1em;
+  box-sizing: border-box;
+}
+
+.webtoon-list {
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  width: 100%;
+}

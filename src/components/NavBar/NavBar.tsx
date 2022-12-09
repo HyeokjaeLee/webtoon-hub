@@ -75,11 +75,13 @@ export const NavBar = () => {
 
   return (
     <nav className={scss["nav-bar"]}>
-      <SearchButton />
-      <Link to="/" className={scss["page-title"]}>
-        <h1>WEBTOON HUB</h1>
-      </Link>
-      <ServiceButton />
+      <div className={scss["nav-bar-item-container"]}>
+        <SearchButton />
+        <Link to="/" className={scss["page-title"]}>
+          <h1>WEBTOON HUB</h1>
+        </Link>
+        <ServiceButton />
+      </div>
     </nav>
   );
 };

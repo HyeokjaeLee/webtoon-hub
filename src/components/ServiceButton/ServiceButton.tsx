@@ -51,7 +51,7 @@ export const ServiceButton = () => {
         />
       )}
       <button
-        className={scss["service-logo-wrap"]}
+        className={`${scss["service-button"]} ${scss["service-logo-wrap"]}`}
         onClick={() => {
           modalOpened ? closeModal() : setModalOpened(true);
         }}
@@ -73,9 +73,9 @@ export const ServiceButton = () => {
               to={to}
               onClick={() => setModalOpened(false)}
               className={({ isActive }) =>
-                isActive
-                  ? scss.active
-                  : `${scss["service-logo-wrap"]} ${scss["service-link"]}`
+                `${isActive ? scss.active : scss["service-logo-wrap"]} ${
+                  scss["service-link"]
+                }`
               }
             >
               <Icon />

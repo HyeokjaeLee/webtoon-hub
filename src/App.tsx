@@ -1,19 +1,21 @@
-import "assets/scss/App.scss";
-
-import { NavBar } from "./components";
 import { Route, Routes } from "react-router-dom";
-import { WebtoonPage } from "pages/webtoon-page";
+import { WebtoonsPage } from "./pages";
+import { DefaultLayout } from "./layouts";
+
 function App() {
   return (
-    <>
-      <NavBar />
-      <Routes>
-        <Route path="/" element={<WebtoonPage />} />
-        <Route path="/naver" element={<WebtoonPage />} />
-        <Route path="/kakao" element={<WebtoonPage />} />
-        <Route path="/kakaoPage" element={<WebtoonPage />} />
-      </Routes>
-    </>
+    <Routes>
+      {["/", "/naver", "/kakao", "/kakaoPage"].map((path) => (
+        <Route
+          path={path}
+          element={
+            <DefaultLayout>
+              <WebtoonsPage />
+            </DefaultLayout>
+          }
+        />
+      ))}
+    </Routes>
   );
 }
 

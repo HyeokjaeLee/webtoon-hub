@@ -1,0 +1,96 @@
+@import "../../scss";
+
+.loading:before {
+  content: "";
+  position: absolute;
+  top: 0px;
+  height: 14px;
+  width: 14px;
+  border-radius: 7px;
+  -webkit-animation: loading-ani-1 1.5s ease-in-out infinite;
+  animation: loading-ani-1 1.5s ease-in-out infinite;
+}
+
+.loading {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  top: 46%;
+  left: 46%;
+  border-radius: 7px;
+  background-color: #c2c2c2;
+}
+
+.loading:after {
+  content: "";
+  position: absolute;
+  top: 0px;
+  height: 14px;
+  width: 14px;
+  border-radius: 7px;
+  -webkit-animation: loading-ani-2 1.5s ease-in-out infinite;
+  animation: loading-ani-2 1.5s ease-in-out infinite;
+}
+
+.loading-wrap {
+  width: 10px;
+  position: relative;
+}
+
+@-webkit-keyframes loading-ani-1 {
+  0% {
+    left: -25px;
+    background-color: rgba(194, 194, 194, 0.8);
+  }
+  50% {
+    left: 0px;
+    background-color: rgba(194, 194, 194, 0.1);
+  }
+  100% {
+    left: -25px;
+    background-color: rgba(194, 194, 194, 0.8);
+  }
+}
+@keyframes loading-ani-1 {
+  0% {
+    left: -25px;
+    background-color: rgba(194, 194, 194, 0.8);
+  }
+  50% {
+    left: 0px;
+    background-color: rgba(194, 194, 194, 0.1);
+  }
+  100% {
+    left: -25px;
+    background-color: rgba(194, 194, 194, 0.8);
+  }
+}
+
+@-webkit-keyframes loading-ani-2 {
+  0% {
+    left: 25px;
+    background-color: rgba(194, 194, 194, 0.8);
+  }
+  50% {
+    left: 0px;
+    background-color: rgba(194, 194, 194, 0.1);
+  }
+  100% {
+    left: 25px;
+    background-color: rgba(194, 194, 194, 0.8);
+  }
+}
+@keyframes loading-ani-2 {
+  0% {
+    left: 25px;
+    background-color: rgba(194, 194, 194, 0.8);
+  }
+  50% {
+    left: 0px;
+    background-color: rgba(194, 194, 194, 0.1);
+  }
+  100% {
+    left: 25px;
+    background-color: rgba(194, 194, 194, 0.8);
+  }
+}

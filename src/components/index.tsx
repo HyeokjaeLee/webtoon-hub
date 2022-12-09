@@ -1,4 +1,3 @@
-export { WebtoonsList } from "./WebtoonsList";
 export { WebtoonCard } from "./WebtoonCard/WebtoonCard";
 export { ServiceBadge } from "./ServiceBadge/ServiceBadge";
 export { AddtionalInfoBadges } from "./AddtionalInfoBadges/AddtionalInfoBadges";
@@ -7,3 +6,4 @@ export { ServiceButton } from "./ServiceButton/ServiceButton";
 export { SearchButton } from "./SearchButton/SearchButton";
 export { UpdateDaysBar } from "./UpdateDaysBar/UpdateDaysBar";
 export { NavBar } from "./NavBar/NavBar";
+export { Loading } from "./Loading/Loading";

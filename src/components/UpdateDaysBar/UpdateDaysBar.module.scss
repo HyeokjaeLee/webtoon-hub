@@ -1,3 +1,16 @@
+.update-day-bar-wrap {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: black;
+  padding-top: 3.5em;
+  padding-bottom: 1em;
+  top: 0;
+  left: 0;
+  z-index: 3;
+  box-shadow: 0 3px 6px rgba(black, 0.6);
+}
 .update-day-bar {
   display: flex;
   gap: 0.5em;
